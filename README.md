@@ -18,7 +18,9 @@ Here is the initial project boilerplate for the JACCS project
 - Vitest
 - ESLint
 - Pretier
-- Volar
+- VSCode Extensions
+	- Volar
+	- TypeScript Volar
 
 ## For local testing using other devices (Mobile, Tablet etc...)
 1. After running `npm run dev`, vite automatically exposes port `5173` to your network
