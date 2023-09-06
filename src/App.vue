@@ -8,6 +8,7 @@
     <RouterLink to="/sample-pinia-1">Sample Pinia 1</RouterLink>
     <RouterLink to="/sample-pinia-2">Sample Pinia 2</RouterLink>
     <RouterLink to="/sample-postcss">Sample PostCSS</RouterLink>
+    <RouterLink to="/quasar">Quasar Framework</RouterLink>
     <RouterLink to="/asdfawsefhi">Check 404 Page</RouterLink>
   </div>
   <RouterView />
