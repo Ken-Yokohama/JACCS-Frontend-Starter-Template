@@ -10,14 +10,17 @@
     "lint": "eslint --ext .js,.vue src"
   },
   "dependencies": {
+    "@quasar/extras": "^1.16.6",
     "@rushstack/eslint-patch": "^1.3.3",
     "@vue/eslint-config-typescript": "^11.0.3",
     "axios": "^1.5.0",
     "pinia": "^2.1.6",
+    "quasar": "^2.12.6",
     "vue": "^3.3.4",
     "vue-router": "^4.2.4"
   },
   "devDependencies": {
+    "@quasar/vite-plugin": "^1.4.1",
     "@vitejs/plugin-vue": "^4.2.3",
     "eslint": "^8.48.0",
     "eslint-plugin-vue": "^9.17.0",
