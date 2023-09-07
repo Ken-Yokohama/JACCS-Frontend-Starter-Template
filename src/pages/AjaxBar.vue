@@ -1,26 +1,30 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, Ref } from 'vue'
 import ComponentTitle from '../components/ComponentTitle.vue'
-const bar = ref(null)
 
-// we manually trigger it (this is not needed if we
-// don't skip Ajax calls hijacking)
+// Define the type for bar using Ref
+const bar: Ref<null | { start: () => void; stop: () => void }> = ref(null)
+
+// Define the trigger function
 const trigger = () => {
   const barRef = bar.value
-  barRef.start()
+  if (barRef) {
+    barRef.start()
 
-  setTimeout(() => {
-    const barRef = bar.value
-    if (barRef) {
-      barRef.stop()
-    }
-  }, Math.random() * 3000 + 1000)
+    setTimeout(() => {
+      const barRef = bar.value
+      if (barRef) {
+        barRef.stop()
+      }
+    }, Math.random() * 3000 + 1000)
+  }
 }
 </script>
 
 <template>
   <div class="q-pa-md">
     <ComponentTitle icon="trending_flat">Ajax Bar</ComponentTitle>
+    <pre> {{ bar }}</pre>
     <div class="q-pa-md q-gutter-sm">
       <q-ajax-bar
         ref="bar"

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import ComponentTitle from '../components/ComponentTitle.vue'
-const text = ref('')
+const text = ref<string>('')
 </script>
 
 <template>
@@ -11,31 +11,31 @@ const text = ref('')
       <div class="q-gutter-md" style="max-width: 350px">
         <q-input v-model="text" label="Standard" />
 
-        <q-input filled v-model="text" label="Filled" />
+        <q-input v-model="text" filled label="Filled" />
 
-        <q-input outlined v-model="text" label="Outlined" />
+        <q-input v-model="text" outlined label="Outlined" />
 
-        <q-input standout v-model="text" label="Standout" />
+        <q-input v-model="text" standout label="Standout" />
 
         <q-input
-          standout="bg-teal text-white"
           v-model="text"
+          standout="bg-teal text-white"
           label="Custom standout"
         />
 
-        <q-input borderless v-model="text" label="Borderless" />
+        <q-input v-model="text" borderless label="Borderless" />
 
-        <q-input rounded filled v-model="text" label="Rounded filled" />
+        <q-input v-model="text" rounded filled label="Rounded filled" />
 
-        <q-input rounded outlined v-model="text" label="Rounded outlined" />
+        <q-input v-model="text" rounded outlined label="Rounded outlined" />
 
-        <q-input rounded standout v-model="text" label="Rounded standout" />
+        <q-input v-model="text" rounded standout label="Rounded standout" />
 
-        <q-input square filled v-model="text" label="Square filled" />
+        <q-input v-model="text" square filled label="Square filled" />
 
-        <q-input square outlined v-model="text" label="Square outlined" />
+        <q-input v-model="text" square outlined label="Square outlined" />
 
-        <q-input square standout v-model="text" label="Square standout" />
+        <q-input v-model="text" square standout label="Square standout" />
       </div>
     </div>
   </div>

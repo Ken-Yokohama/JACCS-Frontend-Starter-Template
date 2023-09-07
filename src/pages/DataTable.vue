@@ -14,11 +14,11 @@ export interface columnTypes {
   name: string
   required?: boolean
   label: string
-  align?: string
-  field: string | Function
-  format?: Function
-  sortable?: boolean
-  sort?: Function
+  align?: any
+  field: any
+  format?: any
+  sortable?: any
+  sort?: any
 }
 export interface rowTypes {
   name: string
@@ -36,8 +36,8 @@ const columns: columnTypes[] = [
     required: true,
     label: 'Dessert (100g serving)',
     align: 'left',
-    field: (row) => row.name,
-    format: (val) => `${val}`,
+    field: (row: { name: string }) => row.name,
+    format: (val: string) => `${val}`,
     sortable: true,
   },
   {
@@ -56,14 +56,14 @@ const columns: columnTypes[] = [
     label: 'Calcium (%)',
     field: 'calcium',
     sortable: true,
-    sort: (a, b) => parseInt(a, 10) - parseInt(b, 10),
+    sort: (a: string, b: string) => parseInt(a, 10) - parseInt(b, 10),
   },
   {
     name: 'iron',
     label: 'Iron (%)',
     field: 'iron',
     sortable: true,
-    sort: (a, b) => parseInt(a, 10) - parseInt(b, 10),
+    sort: (a: string, b: string) => parseInt(a, 10) - parseInt(b, 10),
   },
 ]
 
@@ -181,6 +181,7 @@ const rows: rowTypes[] = [
     <div class="q-pa-md q-gutter-sm">
       <h5 class="text-weight-bold q-my-md">Single Selection</h5>
       <q-table
+        v-model:selected="multipleSelected"
         flat
         bordered
         title="Treats"
@@ -188,7 +189,6 @@ const rows: rowTypes[] = [
         :columns="columns"
         row-key="name"
         selection="single"
-        v-model:selected="multipleSelected"
       />
 
       <div class="q-mt-md">
@@ -199,6 +199,7 @@ const rows: rowTypes[] = [
     <div class="q-pa-md q-gutter-sm">
       <h5 class="text-weight-bold q-my-md">Multiple Selection</h5>
       <q-table
+        v-model:selected="selected"
         flat
         bordered
         title="Treats"
@@ -207,7 +208,6 @@ const rows: rowTypes[] = [
         row-key="name"
         :selected-rows-label="getSelectedString"
         selection="multiple"
-        v-model:selected="selected"
       />
 
       <div class="q-mt-md">Selected: {{ JSON.stringify(selected) }}</div>
