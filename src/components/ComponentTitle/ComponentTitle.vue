@@ -8,9 +8,8 @@
 </template>
 
 <script setup lang="ts">
-export interface ComponentTitleProps {
-  icon: string
-}
+import { ComponentTitleProps } from './interface'
+
 withDefaults(defineProps<ComponentTitleProps>(), {
   icon: 'home',
 })

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import ComponentTitle from '../components/ComponentTitle.vue'
+import ComponentTitle from '../components/ComponentTitle/ComponentTitle.vue'
 const date = ref('2023/09/05')
 const time = ref('10:56')
 const timeWithSeconds = ref('09:24:10')

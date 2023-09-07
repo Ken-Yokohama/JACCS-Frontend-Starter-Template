@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import ComponentTitle from '../components/ComponentTitle.vue'
+import ComponentTitle from '../components/ComponentTitle/ComponentTitle.vue'
 const selected = ref([])
 let multipleSelected = ref([])
 const getSelectedString = (): string => {
