@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import ComponentTitle from '../components/ComponentTitle.vue'
+import ComponentTitle from '../../components/ComponentTitle/ComponentTitle.vue'
 const selected = ref([])
-const multipleSelected = ref([])
-const getSelectedString = () => {
+let multipleSelected = ref([])
+const getSelectedString = (): string => {
   return multipleSelected.value.length === 0
     ? ''
     : `${multipleSelected.value.length} record${
@@ -14,11 +14,11 @@ export interface columnTypes {
   name: string
   required?: boolean
   label: string
-  align?: string
-  field: string | Function
-  format?: Function
+  align?: 'left' | 'center' | 'right'
+  field: string | ((row: { name: string }) => string)
+  format?: (val: object) => string
   sortable?: boolean
-  sort?: Function
+  sort?: (a: string, b: string) => number
 }
 export interface rowTypes {
   name: string
@@ -181,6 +181,7 @@ const rows: rowTypes[] = [
     <div class="q-pa-md q-gutter-sm">
       <h5 class="text-weight-bold q-my-md">Single Selection</h5>
       <q-table
+        v-model:selected="multipleSelected"
         flat
         bordered
         title="Treats"
@@ -188,7 +189,6 @@ const rows: rowTypes[] = [
         :columns="columns"
         row-key="name"
         selection="single"
-        v-model:selected="multipleSelected"
       />
 
       <div class="q-mt-md">
@@ -199,6 +199,7 @@ const rows: rowTypes[] = [
     <div class="q-pa-md q-gutter-sm">
       <h5 class="text-weight-bold q-my-md">Multiple Selection</h5>
       <q-table
+        v-model:selected="selected"
         flat
         bordered
         title="Treats"
@@ -207,7 +208,6 @@ const rows: rowTypes[] = [
         row-key="name"
         :selected-rows-label="getSelectedString"
         selection="multiple"
-        v-model:selected="selected"
       />
 
       <div class="q-mt-md">Selected: {{ JSON.stringify(selected) }}</div>

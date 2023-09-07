@@ -3,26 +3,26 @@ import { createRouter, createWebHistory } from 'vue-router'
 const router = createRouter({
   history: createWebHistory(),
   routes: [
-    { path: '/', component: () => import('../modules/Home/Home.vue') },
+    { path: '/', component: () => import('../pages/Home/Home.vue') },
     {
       path: '/review-page-1',
-      component: () => import('../modules/ReviewPage1/ReviewPage1.vue'),
+      component: () => import('../pages/ReviewPage1/ReviewPage1.vue'),
     },
     {
       path: '/review-page-2',
-      component: () => import('../modules/ReviewPage2/ReviewPage2.vue'),
+      component: () => import('../pages/ReviewPage2/ReviewPage2.vue'),
     },
     {
       path: '/sample-pinia-1',
-      component: () => import('../modules/SamplePinia1/SamplePinia1.vue'),
+      component: () => import('../pages/SamplePinia1/SamplePinia1.vue'),
     },
     {
       path: '/sample-pinia-2',
-      component: () => import('../modules/SamplePinia2/SamplePinia2.vue'),
+      component: () => import('../pages/SamplePinia2/SamplePinia2.vue'),
     },
     {
       path: '/sample-postcss',
-      component: () => import('../modules/SamplePostCSS/SamplePostCSS.vue'),
+      component: () => import('../pages/SamplePostCSS/SamplePostCSS.vue'),
     },
     {
       path: '/quasar',
@@ -30,45 +30,45 @@ const router = createRouter({
       children: [
         {
           path: '',
-          component: () => import('../pages/Index.vue'),
+          component: () => import('../pages/Quazar/Index.vue'),
         },
         {
           path: 'ajax-bar',
-          component: () => import('../pages/AjaxBar.vue'),
+          component: () => import('../pages/Quazar/AjaxBar.vue'),
         },
         {
           path: 'input-textfield',
-          component: () => import('../pages/InputTextfield.vue'),
+          component: () => import('../pages/Quazar/InputTextfield.vue'),
         },
         {
           path: 'buttons',
-          component: () => import('../pages/Buttons.vue'),
+          component: () => import('../pages/Quazar/Buttons.vue'),
         },
         {
           path: 'dialogs',
-          component: () => import('../pages/Dialogs.vue'),
+          component: () => import('../pages/Quazar/Dialogs.vue'),
         },
         {
           path: 'menu',
-          component: () => import('../pages/Menu.vue'),
+          component: () => import('../pages/Quazar/Menu.vue'),
         },
         {
           path: 'datetime-picker',
-          component: () => import('../pages/DateTimePicker.vue'),
+          component: () => import('../pages/Quazar/DateTimePicker.vue'),
         },
         {
           path: 'datatable',
-          component: () => import('../pages/DataTable.vue'),
+          component: () => import('../pages/Quazar/DataTable.vue'),
         },
         {
           path: 'stepper',
-          component: () => import('../pages/Stepper.vue'),
+          component: () => import('../pages/Quazar/Stepper.vue'),
         },
       ],
     },
     {
       path: '/:catchAll(.*)',
-      component: () => import('../modules/404/NotFound.vue'),
+      component: () => import('../pages/404/NotFound.vue'),
     },
   ],
 })

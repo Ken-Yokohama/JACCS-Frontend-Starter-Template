@@ -1,15 +1,18 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import ComponentTitle from '../components/ComponentTitle.vue'
-const alert = ref(false)
-const confirm = ref(false)
-const prompt = ref(false)
-const address = ref('')
+import ComponentTitle from '../../components/ComponentTitle/ComponentTitle.vue'
+const alert = ref<boolean>(false)
+const confirm = ref<boolean>(false)
+const prompt = ref<boolean>(false)
+const address = ref<string>('')
 
-const dialog = ref(false)
-const position = ref('top')
+const dialog = ref<boolean>(false)
 
-const open = (pos: string) => {
+type posType = 'top' | 'bottom' | 'left' | 'right'
+
+const position = ref<posType>('top')
+
+const open = (pos: posType) => {
   position.value = pos
   dialog.value = true
 }
@@ -37,7 +40,7 @@ const open = (pos: string) => {
           </q-card-section>
 
           <q-card-actions align="right">
-            <q-btn flat label="OK" color="primary" v-close-popup />
+            <q-btn v-close-popup flat label="OK" color="primary" />
           </q-card-actions>
         </q-card>
       </q-dialog>
@@ -56,8 +59,8 @@ const open = (pos: string) => {
           </q-card-section>
 
           <q-card-actions align="right">
-            <q-btn flat label="Cancel" color="primary" v-close-popup />
-            <q-btn flat label="Turn on Wifi" color="primary" v-close-popup />
+            <q-btn v-close-popup flat label="Cancel" color="primary" />
+            <q-btn v-close-popup flat label="Turn on Wifi" color="primary" />
           </q-card-actions>
         </q-card>
       </q-dialog>
@@ -70,16 +73,16 @@ const open = (pos: string) => {
 
           <q-card-section class="q-pt-none">
             <q-input
-              dense
               v-model="address"
+              dense
               autofocus
               @keyup.enter="prompt = false"
             />
           </q-card-section>
 
           <q-card-actions align="right" class="text-primary">
-            <q-btn flat label="Cancel" v-close-popup />
-            <q-btn flat label="Add address" v-close-popup />
+            <q-btn v-close-popup flat label="Cancel" />
+            <q-btn v-close-popup flat label="Add address" />
           </q-card-actions>
         </q-card>
       </q-dialog>
@@ -111,7 +114,6 @@ const open = (pos: string) => {
         color="primary"
         @click="open('left')"
       />
-
       <q-dialog v-model="dialog" :position="position">
         <q-card style="width: 350px">
           <q-linear-progress :value="0.6" color="pink" />

@@ -1,15 +1,33 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import ComponentTitle from '../components/ComponentTitle.vue'
+import ComponentTitle from '../../components/ComponentTitle/ComponentTitle.vue'
 
-const step = ref(1)
+const step = ref<number>(1)
+const stepperRef = ref<{
+  next: () => void
+  previous: () => void
+} | null>(null)
+
+const onNext = (): void => {
+  const stepper = stepperRef.value
+  if (stepper) {
+    stepper.next()
+  }
+}
+
+const onPrev = (): void => {
+  const stepper = stepperRef.value
+  if (stepper) {
+    stepper.previous()
+  }
+}
 </script>
 
 <template>
   <div class="q-pa-md">
-    <ComponentTitle icon="timeline">Stepper</ComponentTitle>
+    <ComponentTitle icon="timeline">Stepper {{ stepperRef }}</ComponentTitle>
     <div class="q-pa-md q-gutter-sm">
-      <q-stepper v-model="step" ref="stepper" color="primary" animated>
+      <q-stepper ref="stepperRef" v-model="step" color="primary" animated>
         <q-step
           :name="1"
           title="Select campaign settings"
@@ -56,25 +74,25 @@ const step = ref(1)
           they're running and how to resolve approval issues.
         </q-step>
 
-        <template v-slot:navigation>
+        <template #navigation>
           <q-stepper-navigation>
             <q-btn
-              @click="$refs.stepper.next()"
               color="primary"
               :label="step === 4 ? 'Finish' : 'Continue'"
+              @click="onNext"
             />
             <q-btn
               v-if="step > 1"
               flat
               color="primary"
-              @click="$refs.stepper.previous()"
               label="Back"
               class="q-ml-sm"
+              @click="onPrev"
             />
           </q-stepper-navigation>
         </template>
 
-        <template v-slot:message>
+        <template #message>
           <q-banner v-if="step === 1" class="bg-purple-8 text-white q-px-lg">
             Campaign settings are important...
           </q-banner>

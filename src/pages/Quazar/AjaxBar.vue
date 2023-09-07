@@ -1,20 +1,21 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import ComponentTitle from '../components/ComponentTitle.vue'
-const bar = ref(null)
+import ComponentTitle from '../../components/ComponentTitle/ComponentTitle.vue'
 
-// we manually trigger it (this is not needed if we
-// don't skip Ajax calls hijacking)
+const bar = ref<{
+  start: () => void
+  stop: () => void
+} | null>(null)
+
 const trigger = () => {
   const barRef = bar.value
-  barRef.start()
+  if (barRef) {
+    barRef.start()
 
-  setTimeout(() => {
-    const barRef = bar.value
-    if (barRef) {
+    setTimeout(() => {
       barRef.stop()
-    }
-  }, Math.random() * 3000 + 1000)
+    }, Math.random() * 3000 + 1000)
+  }
 }
 </script>
 
