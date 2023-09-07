@@ -13,7 +13,6 @@ const stopEffect = watchEffect(() => {
   if (filteredValue !== name.value) {
     name.value = filteredValue
   }
-  console.log('Watching')
 })
 </script>
 

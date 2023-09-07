@@ -11,6 +11,7 @@ module.exports = {
     'vue/multi-word-component-names': 'off',
     'vue/define-emits-declaration': ['error', 'type-based'],
     'vue/define-props-declaration': ['error', 'type-based'],
+    'no-console': 'warn',
     'vue/max-lines-per-block': [
       'error',
       {
