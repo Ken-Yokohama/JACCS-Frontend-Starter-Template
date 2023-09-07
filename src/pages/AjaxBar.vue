@@ -1,21 +1,19 @@
 <script setup lang="ts">
-import { ref, Ref } from 'vue'
+import { ref } from 'vue'
 import ComponentTitle from '../components/ComponentTitle.vue'
 
-// Define the type for bar using Ref
-const bar: Ref<null | { start: () => void; stop: () => void }> = ref(null)
+const bar = ref<{
+  start: () => void
+  stop: () => void
+} | null>(null)
 
-// Define the trigger function
 const trigger = () => {
   const barRef = bar.value
   if (barRef) {
     barRef.start()
 
     setTimeout(() => {
-      const barRef = bar.value
-      if (barRef) {
-        barRef.stop()
-      }
+      barRef.stop()
     }, Math.random() * 3000 + 1000)
   }
 }
@@ -24,7 +22,6 @@ const trigger = () => {
 <template>
   <div class="q-pa-md">
     <ComponentTitle icon="trending_flat">Ajax Bar</ComponentTitle>
-    <pre> {{ bar }}</pre>
     <div class="q-pa-md q-gutter-sm">
       <q-ajax-bar
         ref="bar"

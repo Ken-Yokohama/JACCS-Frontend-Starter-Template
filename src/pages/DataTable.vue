@@ -2,8 +2,8 @@
 import { ref } from 'vue'
 import ComponentTitle from '../components/ComponentTitle.vue'
 const selected = ref([])
-const multipleSelected = ref([])
-const getSelectedString = () => {
+let multipleSelected = ref([])
+const getSelectedString = (): string => {
   return multipleSelected.value.length === 0
     ? ''
     : `${multipleSelected.value.length} record${
@@ -14,11 +14,11 @@ export interface columnTypes {
   name: string
   required?: boolean
   label: string
-  align?: any
-  field: any
-  format?: any
-  sortable?: any
-  sort?: any
+  align?: 'left' | 'center' | 'right'
+  field: string | ((row: { name: string }) => string)
+  format?: (val: object) => string
+  sortable?: boolean
+  sort?: (a: string, b: string) => number
 }
 export interface rowTypes {
   name: string
@@ -36,8 +36,8 @@ const columns: columnTypes[] = [
     required: true,
     label: 'Dessert (100g serving)',
     align: 'left',
-    field: (row: { name: string }) => row.name,
-    format: (val: string) => `${val}`,
+    field: (row) => row.name,
+    format: (val) => `${val}`,
     sortable: true,
   },
   {
@@ -56,14 +56,14 @@ const columns: columnTypes[] = [
     label: 'Calcium (%)',
     field: 'calcium',
     sortable: true,
-    sort: (a: string, b: string) => parseInt(a, 10) - parseInt(b, 10),
+    sort: (a, b) => parseInt(a, 10) - parseInt(b, 10),
   },
   {
     name: 'iron',
     label: 'Iron (%)',
     field: 'iron',
     sortable: true,
-    sort: (a: string, b: string) => parseInt(a, 10) - parseInt(b, 10),
+    sort: (a, b) => parseInt(a, 10) - parseInt(b, 10),
   },
 ]
 

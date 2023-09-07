@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, Ref } from 'vue'
+import { ref } from 'vue'
 import ComponentTitle from '../components/ComponentTitle.vue'
 const alert = ref<boolean>(false)
 const confirm = ref<boolean>(false)
@@ -7,9 +7,12 @@ const prompt = ref<boolean>(false)
 const address = ref<string>('')
 
 const dialog = ref<boolean>(false)
-const position: Ref<'top' | 'bottom' | 'left' | 'right'> = ref('top')
 
-const open = (pos: 'top' | 'bottom' | 'left' | 'right'): void => {
+type posType = 'top' | 'bottom' | 'left' | 'right'
+
+const position = ref<posType>('top')
+
+const open = (pos: posType) => {
   position.value = pos
   dialog.value = true
 }

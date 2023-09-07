@@ -3,7 +3,10 @@ import { ref } from 'vue'
 import ComponentTitle from '../components/ComponentTitle.vue'
 
 const step = ref<number>(1)
-const stepperRef = ref<any>(null)
+const stepperRef = ref<{
+  next: () => void
+  previous: () => void
+} | null>(null)
 
 const onNext = (): void => {
   const stepper = stepperRef.value
