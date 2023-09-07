@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import ComponentTitle from '../components/ComponentTitle/ComponentTitle.vue'
+import ComponentTitle from '../../components/ComponentTitle/ComponentTitle.vue'
 </script>
 
 <template>

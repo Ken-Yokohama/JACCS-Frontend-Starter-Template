@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import ComponentTitle from '../components/ComponentTitle/ComponentTitle.vue'
+import ComponentTitle from '../../components/ComponentTitle/ComponentTitle.vue'
 const alert = ref<boolean>(false)
 const confirm = ref<boolean>(false)
 const prompt = ref<boolean>(false)

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import ComponentTitle from '../components/ComponentTitle/ComponentTitle.vue'
+import ComponentTitle from '../../components/ComponentTitle/ComponentTitle.vue'
 
 const step = ref<number>(1)
 const stepperRef = ref<{
