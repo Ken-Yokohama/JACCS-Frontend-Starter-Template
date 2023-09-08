@@ -1,9 +1,15 @@
 <script setup lang="ts">
 import { onMounted, onUnmounted, onUpdated } from 'vue'
 
-onMounted(() => console.log('Mounted'))
-onUpdated(() => console.log('Updated'))
-onUnmounted(() => console.log('Un Mounted'))
+onMounted(() => {
+  // console.log("Mounted")
+})
+onUpdated(() => {
+  // console.log("Updated")
+})
+onUnmounted(() => {
+  // console.log("Unmounted")
+})
 </script>
 
 <template>
