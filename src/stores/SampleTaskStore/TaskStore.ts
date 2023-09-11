@@ -33,4 +33,5 @@ export const useTaskStore = defineStore('taskStore', {
       })
     },
   },
+  persist: true,
 })
