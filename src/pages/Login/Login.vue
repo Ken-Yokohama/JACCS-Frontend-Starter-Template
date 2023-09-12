@@ -60,7 +60,7 @@
 
 <script setup lang="ts">
 import { ref } from 'vue'
-const isPwd = ref<boolean>(false)
+const isPwd = ref<boolean>(true)
 const email = ref<string>('')
 const password = ref<string>('')
 </script>
