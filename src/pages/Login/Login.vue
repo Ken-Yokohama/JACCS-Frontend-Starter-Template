@@ -44,12 +44,11 @@
           <div class="col-lg-8 col-md-7 col-sm-0 col-xs-0">
             <div class="full-height full-width">
               <q-img
-                src="login-img.jpg"
+                src="login-image.png"
                 fit="cover"
                 height="100%"
                 width="100%"
-                position="center"
-                style="opacity: 0.6"
+                position="right"
               />
             </div>
           </div>
