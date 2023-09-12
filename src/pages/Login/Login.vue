@@ -12,14 +12,14 @@
               </q-card-section>
               <q-card-section>
                 <label>Username</label>
-                <q-input outlined v-model="email" class="q-mb-md"></q-input>
+                <q-input v-model="email" outlined class="q-mb-md"></q-input>
                 <label>Password</label>
                 <q-input
                   v-model="password"
                   outlined
                   :type="isPwd ? 'password' : 'text'"
                 >
-                  <template v-slot:append>
+                  <template #append>
                     <q-icon
                       :name="isPwd ? 'visibility_off' : 'visibility'"
                       class="cursor-pointer"
@@ -44,18 +44,13 @@
           <div class="col-lg-8 col-md-7 col-sm-0 col-xs-0">
             <div class="full-height full-width">
               <q-img
-                src="https://images.unsplash.com/photo-1565043666747-69f6646db940?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80"
+                src="login-img.jpg"
                 fit="cover"
                 height="100%"
                 width="100%"
                 position="center"
                 style="opacity: 0.6"
               />
-              <!-- <img
-            src="https://images.unsplash.com/photo-1565043666747-69f6646db940?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80"
-            class="full-height full-width"
-            style="opacity: 0.5"
-          /> -->
             </div>
           </div>
         </div>
@@ -67,4 +62,6 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 const isPwd = ref<boolean>(false)
+const email = ref<string>('')
+const password = ref<string>('')
 </script>
