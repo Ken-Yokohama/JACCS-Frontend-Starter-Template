@@ -18,17 +18,17 @@ const navLinks: NavMenuProps[] = [
     subModule: [
       {
         subTitle: 'JFP list of users / registration',
-        to: '#',
+        to: '/user-registration',
         show: true, // function to check if sub module is visible
       },
       {
         subTitle: 'Customer List',
-        to: '#',
+        to: '/customer-list',
         show: true, // function to check if sub module is visible
       },
       {
         subTitle: 'Broker List',
-        to: '#',
+        to: '/broker-list',
         show: true, // function to check if sub module is visible
       },
     ],
@@ -41,12 +41,12 @@ const navLinks: NavMenuProps[] = [
     subModule: [
       {
         subTitle: 'Role',
-        to: '#',
+        to: '/role',
         show: true, // function to check if sub module is visible
       },
       {
         subTitle: 'Position',
-        to: '#',
+        to: '/position',
         show: true, // function to check if sub module is visible
       },
     ],
@@ -59,22 +59,22 @@ const navLinks: NavMenuProps[] = [
     subModule: [
       {
         subTitle: 'Holiday',
-        to: '#',
+        to: '/holiday',
         show: true, // function to check if sub module is visible
       },
       {
         subTitle: 'Broker Management',
-        to: '#',
+        to: '/broker-management',
         show: true, // function to check if sub module is visible
       },
       {
         subTitle: 'Form Managment',
-        to: '#',
+        to: '/form-management',
         show: true, // function to check if sub module is visible
       },
       {
         subTitle: 'Unit/Auto Management',
-        to: '#',
+        to: '/unit-auto-management',
         show: true, // function to check if sub module is visible
       },
     ],
@@ -87,12 +87,12 @@ const navLinks: NavMenuProps[] = [
     subModule: [
       {
         subTitle: 'Admin',
-        to: '#',
+        to: '/admin-logs',
         show: true, // function to check if sub module is visible
       },
       {
         subTitle: 'User',
-        to: '#',
+        to: '/user-logs',
         show: true, // function to check if sub module is visible
       },
     ],
@@ -138,7 +138,7 @@ const handleLogout = async () => {
         />
 
         <div v-if="$q.screen.gt.xs" class="q-pr-lg">
-          <img style="height: 100%" alt="JACCS Logo" src="main-logo.png" />
+          <img style="height: 100%" alt="JACCS Logo" src="/main-logo.png" />
         </div>
         <q-space />
         <!-- start -->

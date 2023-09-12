@@ -4,9 +4,4 @@
   <RouterView />
 </template>
 
-<style scoped>
-.router-link-exact-active {
-  color: blue;
-  background-color: red;
-}
-</style>
+<style scoped></style>

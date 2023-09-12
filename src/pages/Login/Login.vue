@@ -27,7 +27,7 @@ const handleLogin = () => {
             <q-card flat style="width: 400px" class="q-mx-sm">
               <q-card-section>
                 <div class="text-center">
-                  <q-img src="main-logo.png" width="230px" />
+                  <q-img src="/main-logo.png" alt="JACCS Logo" width="230px" />
                 </div>
               </q-card-section>
               <q-form greedy @submit="handleLogin">
@@ -81,6 +81,7 @@ const handleLogin = () => {
             <div class="full-height full-width">
               <q-img
                 src="login-image.png"
+                alt="login-image"
                 fit="cover"
                 height="100%"
                 width="100%"

@@ -1,5 +1,5 @@
 <template>
-  <div>Dashboard</div>
+  <div>Holiday</div>
 </template>
 
 <script setup lang="ts"></script>
