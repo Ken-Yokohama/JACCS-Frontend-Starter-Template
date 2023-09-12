@@ -1,3 +1,23 @@
+<script setup lang="ts">
+import { ref } from 'vue'
+const isPwd = ref<boolean>(true)
+const email = ref<string>('')
+const password = ref<string>('')
+
+import { useAuthStore } from '../../stores/AuthStore/AuthStore'
+import router from '../../router'
+const authStore = useAuthStore()
+
+const handleLogin = () => {
+  authStore.login({
+    email: email.value,
+    password: password.value,
+    role: 'admin',
+  })
+  router.push('/')
+}
+</script>
+
 <template>
   <q-layout view="hHh lpR fFf">
     <q-page-container>
@@ -10,35 +30,51 @@
                   <q-img src="main-logo.png" width="230px" />
                 </div>
               </q-card-section>
-              <q-card-section>
-                <label>Username</label>
-                <q-input v-model="email" outlined class="q-mb-md"></q-input>
-                <label>Password</label>
-                <q-input
-                  v-model="password"
-                  outlined
-                  :type="isPwd ? 'password' : 'text'"
-                >
-                  <template #append>
-                    <q-icon
-                      :name="isPwd ? 'visibility_off' : 'visibility'"
-                      class="cursor-pointer"
-                      @click="isPwd = !isPwd"
-                    />
-                  </template>
-                </q-input>
-              </q-card-section>
-              <q-card-section class="text-right q-pt-none">
-                <div class="text-grey-8">Forgot Password</div>
-              </q-card-section>
-              <q-card-section class="text-right q-pt-none">
-                <q-btn
-                  class="full-width"
-                  color="primary"
-                  label="LOGIN"
-                  type="button"
-                ></q-btn>
-              </q-card-section>
+              <q-form greedy @submit="handleLogin">
+                <q-card-section>
+                  <label>Email</label>
+                  <q-input
+                    v-model="email"
+                    outlined
+                    class="q-mb-md"
+                    name="email"
+                    autocomplete="email"
+                    :rules="[
+                      (val) => (val && val.length > 0) || 'This is Requried',
+                    ]"
+                  ></q-input>
+                  <label>Password</label>
+                  <q-input
+                    v-model="password"
+                    outlined
+                    name="password"
+                    :type="isPwd ? 'password' : 'text'"
+                    :rules="[
+                      (val) => (val && val.length > 0) || 'This is Requried',
+                    ]"
+                    autocomplete="current-password"
+                  >
+                    <template #append>
+                      <q-icon
+                        :name="isPwd ? 'visibility_off' : 'visibility'"
+                        class="cursor-pointer"
+                        @click="isPwd = !isPwd"
+                      />
+                    </template>
+                  </q-input>
+                </q-card-section>
+                <q-card-section class="text-right q-pt-none">
+                  <div class="text-grey-8">Forgot Password</div>
+                </q-card-section>
+                <q-card-section class="text-right q-pt-none">
+                  <q-btn
+                    class="full-width"
+                    color="primary"
+                    label="LOGIN"
+                    type="submit"
+                  ></q-btn>
+                </q-card-section>
+              </q-form>
             </q-card>
           </div>
           <div class="col-lg-8 col-md-7 col-sm-0 col-xs-0">
@@ -57,10 +93,3 @@
     </q-page-container>
   </q-layout>
 </template>
-
-<script setup lang="ts">
-import { ref } from 'vue'
-const isPwd = ref<boolean>(true)
-const email = ref<string>('')
-const password = ref<string>('')
-</script>

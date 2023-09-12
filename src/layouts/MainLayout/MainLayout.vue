@@ -45,8 +45,8 @@
 
 <script setup lang="ts">
 import { ref } from 'vue'
-import EssentialLink from '../components/EssentialLink/EssentialLink.vue'
-import { EssentialLinkProps } from '../components/EssentialLink/interface'
+import { EssentialLinkProps } from './EssentialLink/interface'
+import EssentialLink from './EssentialLink/EssentialLink.vue'
 
 const essentialLinks: EssentialLinkProps[] = [
   {
