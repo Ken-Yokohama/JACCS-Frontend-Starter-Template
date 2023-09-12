@@ -35,6 +35,10 @@ const router = createRouter({
       ],
     },
     {
+      path: '/login',
+      component: () => import('../pages/Login/Login.vue'),
+    },
+    {
       path: '/quasar',
       component: () => import('../layouts/MainLayout.vue'),
       children: [
