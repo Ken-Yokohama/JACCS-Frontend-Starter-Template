@@ -2,6 +2,9 @@
 import router from '../../../../router'
 
 import { ref } from 'vue'
+import { BreadcrumbsProps } from '../UserRegistration/interface'
+import PageHeader from '../../../../components/PageHeader/PageHeader.vue'
+import TableNavbar from '../../../../components/TableNavbar/TableNavbar.vue'
 
 export interface rowTypes {
   name: string
@@ -173,17 +176,37 @@ const getSelectedString = (): string => {
         multipleSelected.value.length > 1 ? 's' : ''
       } selected of ${rows.length}`
 }
+
+const breadcrumbs: BreadcrumbsProps[] = [
+  {
+    label: 'User Management',
+    to: '#',
+  },
+  {
+    label: 'Customer List',
+    to: '#',
+  },
+]
 </script>
 
 <template>
-  <div>Customer Lists</div>
-  <button>Delete</button>
-  <button @click="router.push('/customer-list/customer-detail')">Edit</button>
-  <button @click="router.push('/customer-list/create-customer')">
-    Create User
-  </button>
-
-  <div class="q-pa-md">
+  <q-page padding>
+    <PageHeader title="Customer Lists" :breadcrumbs="breadcrumbs" />
+    <TableNavbar
+      :delete-button="() => {}"
+      :edit-button="
+        () => {
+          router.push('/customer-list/customer-detail')
+        }
+      "
+      :search-button="() => {}"
+      :create-button="
+        () => {
+          router.push('/customer-list/create-customer')
+        }
+      "
+      create-button-title="Create Customer"
+    />
     <q-table
       v-model:selected="multipleSelected"
       flat
@@ -193,10 +216,10 @@ const getSelectedString = (): string => {
       row-key="name"
       :selected-rows-label="getSelectedString"
       selection="multiple"
-    />
+    ></q-table>
 
     <div class="q-mt-md">Selected: {{ JSON.stringify(multipleSelected) }}</div>
-  </div>
+  </q-page>
 </template>
 
 <style></style>
