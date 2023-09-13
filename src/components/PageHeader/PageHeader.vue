@@ -1,3 +1,13 @@
+<script setup lang="ts">
+import { PageHeaderProps } from './interface'
+
+withDefaults(defineProps<PageHeaderProps>(), {
+  title: 'Page Title',
+  breadcrumbs: null,
+  back: false,
+})
+</script>
+
 <template>
   <div class="row">
     <div class="col flex">
@@ -32,15 +42,5 @@
   </div>
   <q-separator class="q-my-md" />
 </template>
-
-<script setup lang="ts">
-import { PageHeaderProps } from './interface'
-
-withDefaults(defineProps<PageHeaderProps>(), {
-  title: 'Page Title',
-  breadcrumbs: null,
-  back: false,
-})
-</script>
 
 <style></style>

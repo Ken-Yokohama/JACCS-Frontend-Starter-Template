@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import PageHeader from '../../../../components/PageHeader/PageHeader.vue'
-import NavBar from './SubComponents/NavBar.vue'
+import TableNavbar from '../../../../components/TableNavbar/TableNavbar.vue'
+import router from '../../../../router'
 import { BreadcrumbsProps } from './interface'
 
 import { ref } from 'vue'
@@ -191,7 +192,21 @@ const breadcrumbs: BreadcrumbsProps[] = [
 <template>
   <q-page padding>
     <PageHeader title="JFP" :breadcrumbs="breadcrumbs" />
-    <NavBar />
+    <TableNavbar
+      :delete-button="() => {}"
+      :edit-button="
+        () => {
+          router.push('/user-registration/user-detail')
+        }
+      "
+      :search-button="() => {}"
+      :create-button="
+        () => {
+          router.push('/user-registration/create-user')
+        }
+      "
+      create-button-title="Create User"
+    />
     <q-table
       v-model:selected="multipleSelected"
       flat
