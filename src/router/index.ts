@@ -59,14 +59,14 @@ const router = createRouter({
           component: () =>
             import('../pages/Admin/AdminSettings/UnitAutoManagement.vue'),
         },
-        {
-          path: '/admin-logs',
-          component: () => import('../pages/Admin/Logs/AdminLogs.vue'),
-        },
-        {
-          path: '/user-logs',
-          component: () => import('../pages/Admin/Logs/UserLogs.vue'),
-        },
+        // {
+        //   path: '/admin-logs',
+        //   component: () => import('../pages/Admin/Logs/AdminLogs.vue'),
+        // },
+        // {
+        //   path: '/user-logs',
+        //   component: () => import('../pages/Admin/Logs/UserLogs.vue'),
+        // },
       ],
       meta: { requiresAuth: true },
     },

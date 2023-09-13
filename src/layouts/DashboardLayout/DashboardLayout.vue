@@ -123,7 +123,7 @@ const handleLogout = async () => {
 </script>
 
 <template>
-  <q-layout view="hHh LpR fFf" class="bg-grey-3">
+  <q-layout view="hHh LpR fFf" class="bg-white">
     <q-header class="bg-white text-grey-9" reveal height-hint="60">
       <q-toolbar class="text-grey-6">
         <q-btn
@@ -183,13 +183,14 @@ const handleLogout = async () => {
           </q-list>
         </q-btn-dropdown>
       </q-toolbar>
+      <q-separator />
     </q-header>
 
     <q-drawer
       v-model="leftDrawerOpen"
       show-if-above
       bordered
-      class="bg-grey-3 text-grey-7"
+      class="bg-white text-grey-7"
       :width="300"
     >
       <q-list padding>

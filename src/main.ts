@@ -19,6 +19,19 @@ app.use(router)
 
 app.use(Quasar, {
   plugins: {}, // import Quasar plugins and add here
+  config: {
+    brand: {
+      primary: '#33ad69',
+      secondary: '#348aa7',
+      accent: '#e70012',
+      dark: '#242424',
+      'dark-page': '#121212',
+      positive: '#21BA45',
+      negative: '#CCCCCC',
+      info: '#31CCEC',
+      warning: '#F2C037',
+    },
+  },
 })
 
 app.mount('#app')

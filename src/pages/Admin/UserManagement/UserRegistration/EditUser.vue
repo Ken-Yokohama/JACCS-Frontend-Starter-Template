@@ -1,12 +1,27 @@
 <script setup lang="ts">
-import router from '../../../../router'
+import PageHeader from '../../../../components/PageHeader/PageHeader.vue'
+import { BreadcrumbsProps } from './interface'
+
+const breadcrumbs: BreadcrumbsProps[] = [
+  {
+    label: 'User Management',
+    to: '#',
+  },
+  {
+    label: 'JFP',
+    to: '#',
+  },
+  {
+    label: 'Edit',
+    to: '#',
+  },
+]
 </script>
 
 <template>
-  <button @click="router.push('/user-registration/user-detail')">
-    {{ '< Back' }}
-  </button>
-  <p>Edit</p>
+  <q-page padding>
+    <PageHeader title="Edit" :back="true" :breadcrumbs="breadcrumbs" />
+  </q-page>
 </template>
 
 <style scoped></style>
