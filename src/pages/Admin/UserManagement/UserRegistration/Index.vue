@@ -1,5 +1,7 @@
 <script setup lang="ts">
-import router from '../../../../router'
+import PageHeader from '../../../../components/PageHeader/PageHeader.vue'
+import NavBar from './SubComponents/NavBar.vue'
+import { BreadcrumbsProps } from './interface'
 
 import { ref } from 'vue'
 
@@ -173,17 +175,23 @@ const getSelectedString = (): string => {
         multipleSelected.value.length > 1 ? 's' : ''
       } selected of ${rows.length}`
 }
+
+const breadcrumbs: BreadcrumbsProps[] = [
+  {
+    label: 'User Management',
+    to: '#',
+  },
+  {
+    label: 'JFP',
+    to: '#',
+  },
+]
 </script>
 
 <template>
-  <div>JFP</div>
-  <button>Delete</button>
-  <button @click="router.push('/user-registration/user-detail')">Edit</button>
-  <button @click="router.push('/user-registration/create-user')">
-    Create User
-  </button>
-
-  <div class="q-pa-md">
+  <q-page padding>
+    <PageHeader title="JFP" :breadcrumbs="breadcrumbs" />
+    <NavBar />
     <q-table
       v-model:selected="multipleSelected"
       flat
@@ -193,10 +201,10 @@ const getSelectedString = (): string => {
       row-key="name"
       :selected-rows-label="getSelectedString"
       selection="multiple"
-    />
+    ></q-table>
 
     <div class="q-mt-md">Selected: {{ JSON.stringify(multipleSelected) }}</div>
-  </div>
+  </q-page>
 </template>
 
 <style></style>
