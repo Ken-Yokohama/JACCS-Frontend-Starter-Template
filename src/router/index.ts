@@ -5,6 +5,7 @@ import { CustomerListChildren } from './customer-list'
 import { TransactionChildren } from './transaction'
 import { RoleListChildren } from './role-list'
 import { HolidayChildren } from './holiday'
+import { UnitAutoManagementChildren } from './unit-auto-management'
 
 const router = createRouter({
   history: createWebHistory(),
@@ -63,23 +64,20 @@ const router = createRouter({
         },
         {
           path: '/unit-auto-management',
-          component: () =>
-            import(
-              '../pages/Admin/SettingsAndConfiguration/UnitAutoManagement.vue'
-            ),
+          children: UnitAutoManagementChildren,
         },
         {
           path: '/transaction',
           children: TransactionChildren,
         },
-        // {
-        //   path: '/admin-logs',
-        //   component: () => import('../pages/Admin/Logs/AdminLogs.vue'),
-        // },
-        // {
-        //   path: '/user-logs',
-        //   component: () => import('../pages/Admin/Logs/UserLogs.vue'),
-        // },
+        {
+          path: '/admin-logs',
+          component: () => import('../pages/Admin/Logs/AdminLogs.vue'),
+        },
+        {
+          path: '/user-logs',
+          component: () => import('../pages/Admin/Logs/UserLogs.vue'),
+        },
       ],
       meta: { requiresAuth: true },
     },
