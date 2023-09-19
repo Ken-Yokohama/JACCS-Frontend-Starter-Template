@@ -1,4 +1,4 @@
-export const RoleChildren = [
+export const RoleListChildren = [
   {
     path: '',
     component: () => import('../pages/Admin/RoleManagement/RoleList/Index.vue'),

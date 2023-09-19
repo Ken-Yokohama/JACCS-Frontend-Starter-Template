@@ -3,7 +3,8 @@ import { useAuthStore } from '../stores/AuthStore/AuthStore'
 import { UserRegistrationChildren } from './user-registration'
 import { CustomerListChildren } from './customer-list'
 import { TransactionChildren } from './transaction'
-import { RoleChildren } from './role'
+import { RoleListChildren } from './role-list'
+import { HolidayChildren } from './holiday'
 
 const router = createRouter({
   history: createWebHistory(),
@@ -36,7 +37,7 @@ const router = createRouter({
         },
         {
           path: '/role-list',
-          children: RoleChildren,
+          children: RoleListChildren,
         },
         {
           path: '/position',
@@ -44,22 +45,28 @@ const router = createRouter({
         },
         {
           path: '/holiday',
-          component: () => import('../pages/Admin/AdminSettings/Holiday.vue'),
+          children: HolidayChildren,
         },
         {
           path: '/broker-management',
           component: () =>
-            import('../pages/Admin/AdminSettings/BrokerManagement.vue'),
+            import(
+              '../pages/Admin/SettingsAndConfiguration/BrokerManagement.vue'
+            ),
         },
         {
           path: '/form-management',
           component: () =>
-            import('../pages/Admin/AdminSettings/FormManagement.vue'),
+            import(
+              '../pages/Admin/SettingsAndConfiguration/FormManagement.vue'
+            ),
         },
         {
           path: '/unit-auto-management',
           component: () =>
-            import('../pages/Admin/AdminSettings/UnitAutoManagement.vue'),
+            import(
+              '../pages/Admin/SettingsAndConfiguration/UnitAutoManagement.vue'
+            ),
         },
         {
           path: '/transaction',
