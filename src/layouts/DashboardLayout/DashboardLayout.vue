@@ -124,7 +124,7 @@ const handleLogout = async () => {
 
 <template>
   <q-layout view="hHh LpR fFf" class="bg-white">
-    <q-header class="bg-white text-grey-9" reveal height-hint="60">
+    <q-header class="bg-white text-grey-9" height-hint="60">
       <q-toolbar class="text-grey-6">
         <q-btn
           v-if="$q.platform.is.mobile || !leftDrawerOpen"

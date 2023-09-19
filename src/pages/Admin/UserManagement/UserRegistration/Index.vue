@@ -6,6 +6,9 @@ import { BreadcrumbsProps } from './interface'
 
 import { ref } from 'vue'
 
+import { useUserStore } from '../../../../stores/UserStore/UserStore'
+const userStore = useUserStore()
+
 export interface rowTypes {
   name: string
   calories: number
@@ -141,6 +144,7 @@ const columns: columnTypes[] = [
     format: (val) => `${val}`,
     sortable: true,
   },
+  { name: 'actions', label: '', field: '' },
   {
     name: 'calories',
     align: 'center',
@@ -193,10 +197,10 @@ const breadcrumbs: BreadcrumbsProps[] = [
   <q-page padding>
     <PageHeader title="JFP" :breadcrumbs="breadcrumbs" />
     <TableNavbar
-      :delete-button="() => {}"
+      :delete-button="userStore.deleteUser"
       :edit-button="
         () => {
-          router.push('/user-registration/user-detail')
+          router.push('/user-registration/edit-user')
         }
       "
       :search-button="() => {}"
@@ -216,10 +220,23 @@ const breadcrumbs: BreadcrumbsProps[] = [
       row-key="name"
       :selected-rows-label="getSelectedString"
       selection="multiple"
-    ></q-table>
+    >
+      <template #body-cell-actions="props">
+        <q-td :props="props">
+          <q-btn
+            flat
+            icon="edit_square"
+            size="sm"
+            color="secondary"
+            @click="userStore.viewUser(props.row)"
+          >
+            <q-tooltip class="bg-info">View user details</q-tooltip>
+          </q-btn>
+        </q-td>
+      </template>
+    </q-table>
 
     <div class="q-mt-md">Selected: {{ JSON.stringify(multipleSelected) }}</div>
   </q-page>
 </template>
-
 <style></style>
