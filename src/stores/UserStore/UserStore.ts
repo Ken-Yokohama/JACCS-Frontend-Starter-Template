@@ -1,6 +1,7 @@
+import axios from 'axios'
 import { defineStore } from 'pinia'
-import { Notify, Dialog } from 'quasar'
-import { User } from './interface'
+import { Notify, Dialog, QTableColumn } from 'quasar'
+import { User, Pagination, UserData } from './interface'
 import router from '../../router'
 import ConfirmDialog from '../../components/ConfirmDialog/ConfirmDialog.vue'
 
@@ -8,8 +9,8 @@ export const useUserStore = defineStore('userStore', {
   state: () => ({
     userData: {
       userForm: <User>{
-        firstName: 'Raymond',
-        lastName: 'Tuazon',
+        firstName: '',
+        lastName: '',
         emailAddress: '',
         contactNumber: '',
         role: '',
@@ -33,10 +34,95 @@ export const useUserStore = defineStore('userStore', {
       },
       loading: <boolean>false,
     },
-    btnLoading: false,
+    userColumns: <QTableColumn[]>[
+      {
+        name: 'name',
+        label: 'Name',
+        field: 'name',
+        align: 'left',
+      },
+      {
+        name: 'actions',
+        label: '',
+        field: '',
+      },
+      {
+        name: 'age',
+        label: 'Age',
+        field: 'age',
+        align: 'center',
+      },
+      {
+        name: 'email',
+        label: 'Email',
+        field: 'email',
+        align: 'left',
+      },
+    ],
+    userRows: <object[]>[],
+    pagination: <Pagination>{
+      page: 1,
+      rowsPerPage: 10,
+      rowsNumber: 0,
+      sortBy: 'id',
+      descending: true,
+    },
+    filter: <string>'',
+    loading: <boolean>true,
   }),
   getters: {},
   actions: {
+    async getUsers(props: {
+      pagination: {
+        page: number | null
+        rowsPerPage: number | null
+        sortBy: string
+        descending: boolean
+      }
+      filter?: string
+    }): Promise<void> {
+      const { page, rowsPerPage, sortBy, descending } = props.pagination
+      const filter = props.filter
+
+      this.loading = true
+      const response = await axios.get(
+        'https://table.quasarcomponents.com/dogs',
+        {
+          params: {
+            page: page,
+            limit: rowsPerPage,
+            order_column: sortBy,
+            order_type: descending ? 'desc' : 'asc',
+            term: filter,
+          },
+        }
+      )
+
+      if (response) {
+        const formatted = response.data.data.map((row: UserData) => {
+          return {
+            id: row.id,
+            created_at: row.created_at,
+            updated_at: row.updated_at,
+            name: row.name,
+            email: row.email,
+            age: row.age,
+          }
+        })
+
+        this.userRows = formatted
+
+        this.pagination = {
+          page: response.data.meta.current_page,
+          rowsPerPage: response.data.meta.per_page,
+          rowsNumber: response.data.meta.total,
+          sortBy: sortBy,
+          descending: descending,
+        }
+
+        this.loading = false
+      }
+    },
     createUser() {
       Dialog.create({
         component: ConfirmDialog,

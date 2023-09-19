@@ -22,3 +22,20 @@ export interface User {
   carMallOrShowRoom?: string
   tinNumber?: string
 }
+
+export interface Pagination {
+  page: number
+  rowsPerPage: number
+  rowsNumber: number
+  sortBy: string
+  descending: boolean
+}
+
+export interface UserData {
+  id: number
+  created_at: string
+  updated_at: string
+  name: string
+  email: string
+  age: number
+}
