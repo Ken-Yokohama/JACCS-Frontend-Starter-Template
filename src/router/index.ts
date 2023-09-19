@@ -3,6 +3,7 @@ import { useAuthStore } from '../stores/AuthStore/AuthStore'
 import { UserRegistrationChildren } from './user-registration'
 import { CustomerListChildren } from './customer-list'
 import { TransactionChildren } from './transaction'
+import { RoleChildren } from './role'
 
 const router = createRouter({
   history: createWebHistory(),
@@ -34,8 +35,8 @@ const router = createRouter({
             import('../pages/Admin/UserManagement/BrokerList.vue'),
         },
         {
-          path: '/role',
-          component: () => import('../pages/Admin/RoleManagement/Role.vue'),
+          path: '/role-list',
+          children: RoleChildren,
         },
         {
           path: '/position',

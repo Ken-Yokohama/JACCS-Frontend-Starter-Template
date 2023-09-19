@@ -41,7 +41,7 @@ const navLinks: NavMenuProps[] = [
     subModule: [
       {
         subTitle: 'Role',
-        to: '/role',
+        to: '/role-list',
         show: true, // function to check if sub module is visible
       },
       {
