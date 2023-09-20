@@ -64,27 +64,36 @@ onMounted(() => {
       row-key="id"
       :loading="userStore.loading"
       :filter="userStore.filter"
-      :rows-per-page-options="[10, 15, 20, 30, 50]"
+      :rows-per-page-options="[10, 20, 30, 40, 50]"
       rows-per-page-label="View"
       :selected-rows-label="getSelectedString"
       selection="multiple"
+      hide-bottom
       @request="userStore.getUsers"
     >
-      <template #body-cell-actions="props">
+      <template #header-cell="props">
+        <q-th :props="props" style="font-weight: bold; font-size: 1rem">
+          {{ props.col.label }}
+        </q-th>
+      </template>
+      <template #body-cell-name="props">
         <q-td :props="props">
-          <q-btn
-            flat
-            icon="edit_square"
-            size="sm"
-            color="secondary"
-            @click="userStore.viewUser(props.row)"
-          >
-            <q-tooltip class="bg-info">View user details</q-tooltip>
-          </q-btn>
+          <div class="flex items-center">
+            <p class="q-mb-none">{{ props.row.name }}</p>
+            <q-btn
+              flat
+              icon="edit_square"
+              size="sm"
+              color="secondary"
+              @click="userStore.viewUser(props.row)"
+            >
+              <q-tooltip class="bg-info">View user details</q-tooltip>
+            </q-btn>
+          </div>
         </q-td>
       </template>
     </q-table>
-    <div>
+    <div class="q-pt-sm">
       <div class="flex flex-center">
         <p>
           Viewing
@@ -121,7 +130,15 @@ onMounted(() => {
             v-model="userStore.pagination.rowsPerPage"
             dense
             outlined
-            :options="[10, 15, 20, 30, 40, 50]"
+            :options="[10, 20, 30, 40, 50]"
+            @update:model-value="
+              () => {
+                userStore.getUsers({
+                  pagination: userStore.pagination,
+                  filter: userStore.filter,
+                })
+              }
+            "
           />
         </div>
       </div>

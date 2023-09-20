@@ -8,6 +8,7 @@ module.exports = {
   rules: {
     'vue/singleline-html-element-content-newline': 'off',
     'vue/html-self-closing': 'off',
+    'vue/html-indent': 'off',
     'vue/multi-word-component-names': 'off',
     'vue/define-emits-declaration': ['error', 'type-based'],
     'vue/define-props-declaration': ['error', 'type-based'],
