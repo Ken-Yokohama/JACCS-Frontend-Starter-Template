@@ -4,17 +4,19 @@ import router from '../../../../router'
 import { ref } from 'vue'
 import PageHeader from '../../../../components/PageHeader/PageHeader.vue'
 import TableNavbar from '../../../../components/TableNavbar/TableNavbar.vue'
+import { Dialog, Notify } from 'quasar'
+import ConfirmDialog from '../../../../components/ConfirmDialog/ConfirmDialog.vue'
 import { BreadcrumbsProps } from '../../UserManagement/UserRegistration/interface'
 
 export interface rowTypes {
-  name: string
-  calories: number
-  fat: number
-  carbs: number
-  protein: number
-  sodium: number
-  calcium: string
-  iron: string
+  roleName: string
+  position: 'Admin' | 'Editor'
+  description: string
+}
+
+export interface Pagination {
+  page: number
+  rowsPerPage: number
 }
 
 export interface columnTypes {
@@ -22,7 +24,7 @@ export interface columnTypes {
   required?: boolean
   label: string
   align?: 'left' | 'center' | 'right'
-  field: string | ((row: { name: string }) => string)
+  field: string | ((row: rowTypes) => string)
   format?: (val: object) => string
   sortable?: boolean
   sort?: (a: string, b: string) => number
@@ -30,141 +32,92 @@ export interface columnTypes {
 
 const rows: rowTypes[] = [
   {
-    name: 'Frozen Yogurt',
-    calories: 159,
-    fat: 6.0,
-    carbs: 24,
-    protein: 4.0,
-    sodium: 87,
-    calcium: '14%',
-    iron: '1%',
+    roleName: 'Admin',
+    position: 'Admin',
+    description: 'Manages system administrators.',
   },
   {
-    name: 'Ice cream sandwich',
-    calories: 237,
-    fat: 9.0,
-    carbs: 37,
-    protein: 4.3,
-    sodium: 129,
-    calcium: '8%',
-    iron: '1%',
+    roleName: 'Editor',
+    position: 'Editor',
+    description: 'Edits content on the website.',
   },
   {
-    name: 'Eclair',
-    calories: 262,
-    fat: 16.0,
-    carbs: 23,
-    protein: 6.0,
-    sodium: 337,
-    calcium: '6%',
-    iron: '7%',
+    roleName: 'Moderator',
+    position: 'Editor',
+    description: 'Reviews and approves user-generated content.',
   },
   {
-    name: 'Cupcake',
-    calories: 305,
-    fat: 3.7,
-    carbs: 67,
-    protein: 4.3,
-    sodium: 413,
-    calcium: '3%',
-    iron: '8%',
+    roleName: 'Guest',
+    position: 'Editor',
+    description: 'Limited access to content editing.',
   },
   {
-    name: 'Gingerbread',
-    calories: 356,
-    fat: 16.0,
-    carbs: 49,
-    protein: 3.9,
-    sodium: 327,
-    calcium: '7%',
-    iron: '16%',
+    roleName: 'Viewer',
+    position: 'Editor',
+    description: 'Can view but not edit content.',
   },
   {
-    name: 'Jelly bean',
-    calories: 375,
-    fat: 0.0,
-    carbs: 94,
-    protein: 0.0,
-    sodium: 50,
-    calcium: '0%',
-    iron: '0%',
+    roleName: 'Contributor',
+    position: 'Editor',
+    description: 'Contributes content to the platform.',
   },
   {
-    name: 'Lollipop',
-    calories: 392,
-    fat: 0.2,
-    carbs: 98,
-    protein: 0,
-    sodium: 38,
-    calcium: '0%',
-    iron: '2%',
+    roleName: 'Support',
+    position: 'Admin',
+    description: 'Provides technical support to users.',
   },
   {
-    name: 'Honeycomb',
-    calories: 408,
-    fat: 3.2,
-    carbs: 87,
-    protein: 6.5,
-    sodium: 562,
-    calcium: '0%',
-    iron: '45%',
+    roleName: 'Manager',
+    position: 'Admin',
+    description: 'Manages teams and resources.',
   },
   {
-    name: 'Donut',
-    calories: 452,
-    fat: 25.0,
-    carbs: 51,
-    protein: 4.9,
-    sodium: 326,
-    calcium: '2%',
-    iron: '22%',
+    roleName: 'Developer',
+    position: 'Admin',
+    description: 'Works on platform development.',
   },
   {
-    name: 'KitKat',
-    calories: 518,
-    fat: 26.0,
-    carbs: 65,
-    protein: 7,
-    sodium: 54,
-    calcium: '12%',
-    iron: '6%',
+    roleName: 'Tester',
+    position: 'Admin',
+    description: 'Tests and verifies system functionality.',
+  },
+  {
+    roleName: 'Marketing',
+    position: 'Editor',
+    description: 'Handles marketing and promotion.',
+  },
+  {
+    roleName: 'Customer Service',
+    position: 'Admin',
+    description: 'Assists users with inquiries and issues.',
   },
 ]
 
 const columns: columnTypes[] = [
   {
-    name: 'name',
+    name: 'roleName',
     required: true,
-    label: 'Dessert (100g serving)',
+    label: 'Role Name',
     align: 'left',
-    field: (row) => row.name,
+    field: (row) => String(row.roleName),
     format: (val) => `${val}`,
-    sortable: true,
+    sortable: false,
   },
   {
-    name: 'calories',
-    align: 'center',
-    label: 'Calories',
-    field: 'calories',
-    sortable: true,
-  },
-  { name: 'fat', label: 'Fat (g)', field: 'fat', sortable: true },
-  { name: 'carbs', label: 'Carbs (g)', field: 'carbs' },
-  { name: 'protein', label: 'Protein (g)', field: 'protein' },
-  { name: 'sodium', label: 'Sodium (mg)', field: 'sodium' },
-  {
-    name: 'calcium',
-    label: 'Calcium (%)',
-    field: 'calcium',
-    sortable: true,
-    sort: (a, b) => parseInt(a, 10) - parseInt(b, 10),
+    name: 'position',
+    required: true,
+    label: 'Position',
+    align: 'left',
+    field: (row) => row.position,
+    format: (val) => `${val}`,
   },
   {
-    name: 'iron',
-    label: 'Iron (%)',
-    field: 'iron',
-    sortable: true,
-    sort: (a, b) => parseInt(a, 10) - parseInt(b, 10),
+    name: 'description',
+    required: true,
+    label: 'Description',
+    align: 'left',
+    field: (row) => row.description,
+    format: (val) => `${val}`,
   },
 ]
 
@@ -187,18 +140,52 @@ const breadcrumbs: BreadcrumbsProps[] = [
     to: '#',
   },
 ]
+
+const pagination = ref<Pagination>({
+  page: 1,
+  rowsPerPage: 10,
+})
+
+const handleDelete = async () => {
+  Dialog.create({
+    component: ConfirmDialog,
+    componentProps: {
+      title: 'Delete Role',
+      message: 'Are you sure you want to delete this record?',
+    },
+  }).onOk(async () => {
+    const closeProgress = Notify.create({
+      type: 'ongoing',
+      message: 'Deleting role, please wait...',
+      position: 'center',
+      color: 'white',
+      textColor: 'dark',
+    })
+
+    setTimeout(() => {
+      closeProgress()
+      Notify.create({
+        message: 'Deleted Successfully',
+        position: 'center',
+        color: 'white',
+        textColor: 'dark',
+      })
+    }, 5000)
+  })
+}
 </script>
 
 <template>
   <q-page padding>
     <PageHeader title="Role List" :breadcrumbs="breadcrumbs" />
     <TableNavbar
-      :delete-button="() => {}"
+      :delete-button="handleDelete"
       :edit-button="
         () => {
           router.push('/role-list/role-detail')
         }
       "
+      :disable-edit-button="multipleSelected.length > 1"
       :search-button="() => {}"
       :create-button="
         () => {
@@ -209,14 +196,88 @@ const breadcrumbs: BreadcrumbsProps[] = [
     />
     <q-table
       v-model:selected="multipleSelected"
+      v-model:pagination="pagination"
       flat
       bordered
       :rows="rows"
       :columns="columns"
-      row-key="name"
+      row-key="roleName"
       :selected-rows-label="getSelectedString"
       selection="multiple"
-    ></q-table>
+      hide-bottom
+    >
+      <template #header-cell="props">
+        <q-th :props="props" style="font-weight: bold; font-size: 1rem">
+          {{ props.col.label }}
+        </q-th>
+      </template>
+      <template #body-cell-roleName="props">
+        <q-td :props="props">
+          <div class="flex items-center">
+            <p class="q-mb-none">{{ props.row.roleName }}</p>
+            <q-btn
+              flat
+              icon="edit_square"
+              size="sm"
+              color="secondary"
+              @click="() => {}"
+            >
+              <q-tooltip class="bg-info">View user details</q-tooltip>
+            </q-btn>
+          </div>
+        </q-td>
+      </template>
+    </q-table>
+
+    <div class="q-pt-sm">
+      <div class="flex flex-center">
+        <p>
+          Viewing
+          <span>{{ (pagination.page - 1) * pagination.rowsPerPage + 1 }}</span>
+          -
+          <span>
+            {{
+              pagination.page * pagination.rowsPerPage <= rows.length
+                ? pagination.page * pagination.rowsPerPage
+                : rows.length
+            }}
+          </span>
+          of
+          <span>{{ rows.length }}</span>
+        </p>
+        <q-space />
+        <q-pagination
+          v-model="pagination.page"
+          direction-links
+          outline
+          unelevated
+          color="black"
+          active-color="secondary"
+          class="q-mr-md"
+          :max="Math.ceil(rows.length / pagination.rowsPerPage)"
+          :max-pages="6"
+          boundary-numbers
+          @update:model-value="multipleSelected = []"
+        />
+        <div class="flex items-center">
+          <q-item-label class="q-mr-sm">View</q-item-label>
+          <q-select
+            v-model="pagination.rowsPerPage"
+            dense
+            outlined
+            :options="[10, 20, 30, 40, 50]"
+            @update:model-value="
+              () => {
+                // userStore.getUsers({
+                //   pagination: userStore.pagination,
+                //   filter: userStore.filter,
+                // })
+              }
+            "
+          />
+        </div>
+      </div>
+    </div>
 
     <div class="q-mt-md">Selected: {{ JSON.stringify(multipleSelected) }}</div>
   </q-page>
