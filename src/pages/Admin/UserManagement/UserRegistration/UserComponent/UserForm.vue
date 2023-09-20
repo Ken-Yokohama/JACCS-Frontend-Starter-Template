@@ -271,7 +271,7 @@ import { UserFormProps } from './interface'
 const { saveButton } = defineProps<UserFormProps>()
 const items = ['Item 1', 'Item 2', 'Item 3', 'Item 4', 'Item 5']
 
-import { useUserStore } from '../../stores/UserStore/UserStore'
+import { useUserStore } from '../../../../../stores/UserStore/UserStore'
 
 const userStore = useUserStore()
 

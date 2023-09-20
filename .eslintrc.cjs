@@ -13,13 +13,6 @@ module.exports = {
     'vue/define-emits-declaration': ['error', 'type-based'],
     'vue/define-props-declaration': ['error', 'type-based'],
     'no-console': 'warn',
-    'vue/max-lines-per-block': [
-      'error',
-      {
-        script: 600,
-        template: 300,
-      },
-    ],
     '@typescript-eslint/no-explicit-any': [
       'error',
       {

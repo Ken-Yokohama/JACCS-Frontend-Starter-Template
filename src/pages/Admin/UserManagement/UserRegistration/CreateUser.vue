@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import PageHeader from '../../../../components/PageHeader/PageHeader.vue'
-import UserForm from '../../../../components/UserComponent/UserForm.vue'
 import { BreadcrumbsProps } from './interface'
-
 import { useUserStore } from '../../../../stores/UserStore/UserStore'
+import UserForm from './UserComponent/UserForm.vue'
+
 const userStore = useUserStore()
 
 const breadcrumbs: BreadcrumbsProps[] = [
@@ -29,4 +29,3 @@ const breadcrumbs: BreadcrumbsProps[] = [
 </template>
 
 <style scoped></style>
-../../../../components/UserComponent/UserForm.vue

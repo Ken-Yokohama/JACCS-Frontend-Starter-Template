@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import PageHeader from '../../../../components/PageHeader/PageHeader.vue'
-import UserDetails from '../../../../components/UserComponent/UserDetails.vue'
+import UserDetails from './UserComponent/UserDetails.vue'
 import { BreadcrumbsProps } from './interface'
 const breadcrumbs: BreadcrumbsProps[] = [
   {
@@ -26,4 +26,3 @@ const breadcrumbs: BreadcrumbsProps[] = [
 </template>
 
 <style scoped></style>
-../../../../components/UserComponent/UserDetails.vue
