@@ -18,17 +18,17 @@ const navLinks: NavMenuProps[] = [
     subModule: [
       {
         subTitle: 'JFP list of users / registration',
-        to: '#',
+        to: '/user-registration',
         show: true, // function to check if sub module is visible
       },
       {
         subTitle: 'Customer List',
-        to: '#',
+        to: '/customer-list',
         show: true, // function to check if sub module is visible
       },
       {
         subTitle: 'Broker List',
-        to: '#',
+        to: '/broker-list',
         show: true, // function to check if sub module is visible
       },
     ],
@@ -41,12 +41,12 @@ const navLinks: NavMenuProps[] = [
     subModule: [
       {
         subTitle: 'Role',
-        to: '#',
+        to: '/role-list',
         show: true, // function to check if sub module is visible
       },
       {
         subTitle: 'Position',
-        to: '#',
+        to: '/position',
         show: true, // function to check if sub module is visible
       },
     ],
@@ -59,22 +59,22 @@ const navLinks: NavMenuProps[] = [
     subModule: [
       {
         subTitle: 'Holiday',
-        to: '#',
+        to: '/holiday',
         show: true, // function to check if sub module is visible
       },
       {
         subTitle: 'Broker Management',
-        to: '#',
+        to: '/broker-management',
         show: true, // function to check if sub module is visible
       },
       {
         subTitle: 'Form Managment',
-        to: '#',
+        to: '/form-management',
         show: true, // function to check if sub module is visible
       },
       {
         subTitle: 'Unit/Auto Management',
-        to: '#',
+        to: '/unit-auto-management',
         show: true, // function to check if sub module is visible
       },
     ],
@@ -87,12 +87,12 @@ const navLinks: NavMenuProps[] = [
     subModule: [
       {
         subTitle: 'Admin',
-        to: '#',
+        to: '/admin-logs',
         show: true, // function to check if sub module is visible
       },
       {
         subTitle: 'User',
-        to: '#',
+        to: '/user-logs',
         show: true, // function to check if sub module is visible
       },
     ],
@@ -113,7 +113,29 @@ const navLinks: NavMenuProps[] = [
     title: 'Transaction',
     to: '/transaction',
     icon: 'handshake',
-    show: true, // function to follow
+    show: true,
+    subModule: [
+      {
+        subTitle: 'Create Offer',
+        to: '/transaction',
+        show: true, // function to check if sub module is visible
+      },
+      {
+        subTitle: 'Simulate Offer',
+        to: '/transaction/offer-detail',
+        show: true, // function to check if sub module is visible
+      },
+      {
+        subTitle: 'App Management',
+        to: '/transaction/app-management',
+        show: true, // function to check if sub module is visible
+      },
+      {
+        subTitle: 'App Processing',
+        to: '/transaction/app-processing',
+        show: true, // function to check if sub module is visible
+      },
+    ],
   },
 ]
 
@@ -123,8 +145,8 @@ const handleLogout = async () => {
 </script>
 
 <template>
-  <q-layout view="hHh LpR fFf" class="bg-grey-3">
-    <q-header class="bg-white text-grey-9" reveal height-hint="60">
+  <q-layout view="hHh LpR fFf" class="bg-white">
+    <q-header class="bg-white text-grey-9" height-hint="60">
       <q-toolbar class="text-grey-6">
         <q-btn
           v-if="$q.platform.is.mobile || !leftDrawerOpen"
@@ -138,7 +160,7 @@ const handleLogout = async () => {
         />
 
         <div v-if="$q.screen.gt.xs" class="q-pr-lg">
-          <img style="height: 100%" alt="JACCS Logo" src="main-logo.png" />
+          <img style="height: 100%" alt="JACCS Logo" src="/main-logo.png" />
         </div>
         <q-space />
         <!-- start -->
@@ -183,13 +205,14 @@ const handleLogout = async () => {
           </q-list>
         </q-btn-dropdown>
       </q-toolbar>
+      <q-separator />
     </q-header>
 
     <q-drawer
       v-model="leftDrawerOpen"
       show-if-above
       bordered
-      class="bg-grey-3 text-grey-7"
+      class="bg-white text-grey-7"
       :width="300"
     >
       <q-list padding>
