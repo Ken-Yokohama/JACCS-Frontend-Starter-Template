@@ -10,11 +10,11 @@ withDefaults(defineProps<PageHeaderProps>(), {
 
 <template>
   <div class="row">
-    <div class="col flex">
+    <div class="col flex items-center">
       <q-btn
         v-if="back"
         outline
-        color="negative"
+        color="positive"
         no-caps
         class="q-mr-sm"
         @click="$router.go(-1)"
@@ -40,7 +40,7 @@ withDefaults(defineProps<PageHeaderProps>(), {
       </q-breadcrumbs>
     </div>
   </div>
-  <q-separator class="q-my-md" />
+  <q-separator class="q-my-lg" />
 </template>
 
 <style></style>

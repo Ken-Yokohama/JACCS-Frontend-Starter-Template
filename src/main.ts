@@ -3,7 +3,7 @@ import './style.css'
 import App from './App.vue'
 import router from './router'
 import { createPinia } from 'pinia'
-import { Quasar } from 'quasar'
+import { Quasar, Dialog, Notify } from 'quasar'
 import piniaPluginPersistedstate from 'pinia-plugin-persistedstate'
 
 // Quasar libraries and css
@@ -18,7 +18,10 @@ app.use(pinia)
 app.use(router)
 
 app.use(Quasar, {
-  plugins: {}, // import Quasar plugins and add here
+  plugins: {
+    Dialog,
+    Notify,
+  }, // import Quasar plugins and add here
   config: {
     brand: {
       primary: '#33ad69',
@@ -26,8 +29,8 @@ app.use(Quasar, {
       accent: '#e70012',
       dark: '#242424',
       'dark-page': '#121212',
-      positive: '#21BA45',
-      negative: '#CCCCCC',
+      positive: '#CCCCCC',
+      negative: '#FF0000',
       info: '#31CCEC',
       warning: '#F2C037',
     },
