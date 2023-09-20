@@ -1,14 +1,18 @@
 <script setup lang="ts">
 import PageHeader from '../../../../components/PageHeader/PageHeader.vue'
-import { BreadcrumbsProps } from '../UserRegistration/interface'
+import { BreadcrumbsProps } from '../../UserManagement/UserRegistration/interface'
 
 const breadcrumbs: BreadcrumbsProps[] = [
   {
-    label: 'User Management',
+    label: 'Transaction',
     to: '#',
   },
   {
-    label: 'Customer List',
+    label: 'Offer',
+    to: '#',
+  },
+  {
+    label: 'Create Offer',
     to: '#',
   },
   {

@@ -1,8 +1,10 @@
 <script setup lang="ts">
+import router from '../../../../router'
+
 import { ref } from 'vue'
-import PageHeader from '../../../components/PageHeader/PageHeader.vue'
-import TableNavbar from '../../../components/TableNavbar/TableNavbar.vue'
-import { BreadcrumbsProps } from './UserRegistration/interface'
+import PageHeader from '../../../../components/PageHeader/PageHeader.vue'
+import TableNavbar from '../../../../components/TableNavbar/TableNavbar.vue'
+import { BreadcrumbsProps } from '../../UserManagement/UserRegistration/interface'
 
 export interface rowTypes {
   name: string
@@ -177,11 +179,11 @@ const getSelectedString = (): string => {
 
 const breadcrumbs: BreadcrumbsProps[] = [
   {
-    label: 'User Management',
+    label: 'Role Management',
     to: '#',
   },
   {
-    label: 'Broker List',
+    label: 'Role',
     to: '#',
   },
 ]
@@ -189,8 +191,22 @@ const breadcrumbs: BreadcrumbsProps[] = [
 
 <template>
   <q-page padding>
-    <PageHeader title="Broker Lists" :breadcrumbs="breadcrumbs" />
-    <TableNavbar :search-button="() => {}" />
+    <PageHeader title="Role List" :breadcrumbs="breadcrumbs" />
+    <TableNavbar
+      :delete-button="() => {}"
+      :edit-button="
+        () => {
+          router.push('/role-list/role-detail')
+        }
+      "
+      :search-button="() => {}"
+      :create-button="
+        () => {
+          router.push('/role-list/create-role')
+        }
+      "
+      create-button-title="Create Role"
+    />
     <q-table
       v-model:selected="multipleSelected"
       flat

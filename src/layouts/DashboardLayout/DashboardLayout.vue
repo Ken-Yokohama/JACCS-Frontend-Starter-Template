@@ -41,7 +41,7 @@ const navLinks: NavMenuProps[] = [
     subModule: [
       {
         subTitle: 'Role',
-        to: '/role',
+        to: '/role-list',
         show: true, // function to check if sub module is visible
       },
       {
@@ -113,7 +113,29 @@ const navLinks: NavMenuProps[] = [
     title: 'Transaction',
     to: '/transaction',
     icon: 'handshake',
-    show: true, // function to follow
+    show: true,
+    subModule: [
+      {
+        subTitle: 'Create Offer',
+        to: '/transaction',
+        show: true, // function to check if sub module is visible
+      },
+      {
+        subTitle: 'Simulate Offer',
+        to: '/transaction/offer-detail',
+        show: true, // function to check if sub module is visible
+      },
+      {
+        subTitle: 'App Management',
+        to: '/transaction/app-management',
+        show: true, // function to check if sub module is visible
+      },
+      {
+        subTitle: 'App Processing',
+        to: '/transaction/app-processing',
+        show: true, // function to check if sub module is visible
+      },
+    ],
   },
 ]
 

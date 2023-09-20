@@ -1,5 +1,5 @@
 <template>
-  <div>Holiday</div>
+  <div>Create Make Brand</div>
 </template>
 
 <script setup lang="ts"></script>

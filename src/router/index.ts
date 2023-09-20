@@ -2,6 +2,10 @@ import { createRouter, createWebHistory } from 'vue-router'
 import { useAuthStore } from '../stores/AuthStore/AuthStore'
 import { UserRegistrationChildren } from './user-registration'
 import { CustomerListChildren } from './customer-list'
+import { TransactionChildren } from './transaction'
+import { RoleListChildren } from './role-list'
+import { HolidayChildren } from './holiday'
+import { UnitAutoManagementChildren } from './unit-auto-management'
 
 const router = createRouter({
   history: createWebHistory(),
@@ -33,8 +37,8 @@ const router = createRouter({
             import('../pages/Admin/UserManagement/BrokerList.vue'),
         },
         {
-          path: '/role',
-          component: () => import('../pages/Admin/RoleManagement/Role.vue'),
+          path: '/role-list',
+          children: RoleListChildren,
         },
         {
           path: '/position',
@@ -42,31 +46,38 @@ const router = createRouter({
         },
         {
           path: '/holiday',
-          component: () => import('../pages/Admin/AdminSettings/Holiday.vue'),
+          children: HolidayChildren,
         },
         {
           path: '/broker-management',
           component: () =>
-            import('../pages/Admin/AdminSettings/BrokerManagement.vue'),
+            import(
+              '../pages/Admin/SettingsAndConfiguration/BrokerManagement.vue'
+            ),
         },
         {
           path: '/form-management',
           component: () =>
-            import('../pages/Admin/AdminSettings/FormManagement.vue'),
+            import(
+              '../pages/Admin/SettingsAndConfiguration/FormManagement.vue'
+            ),
         },
         {
           path: '/unit-auto-management',
-          component: () =>
-            import('../pages/Admin/AdminSettings/UnitAutoManagement.vue'),
+          children: UnitAutoManagementChildren,
         },
-        // {
-        //   path: '/admin-logs',
-        //   component: () => import('../pages/Admin/Logs/AdminLogs.vue'),
-        // },
-        // {
-        //   path: '/user-logs',
-        //   component: () => import('../pages/Admin/Logs/UserLogs.vue'),
-        // },
+        {
+          path: '/transaction',
+          children: TransactionChildren,
+        },
+        {
+          path: '/admin-logs',
+          component: () => import('../pages/Admin/Logs/AdminLogs.vue'),
+        },
+        {
+          path: '/user-logs',
+          component: () => import('../pages/Admin/Logs/UserLogs.vue'),
+        },
       ],
       meta: { requiresAuth: true },
     },

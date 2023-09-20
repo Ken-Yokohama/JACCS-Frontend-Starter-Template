@@ -1,8 +1,10 @@
 <script setup lang="ts">
+import PageHeader from '../../../../components/PageHeader/PageHeader.vue'
+import TableNavbar from '../../../../components/TableNavbar/TableNavbar.vue'
+import router from '../../../../router'
+
 import { ref } from 'vue'
-import PageHeader from '../../../components/PageHeader/PageHeader.vue'
-import TableNavbar from '../../../components/TableNavbar/TableNavbar.vue'
-import { BreadcrumbsProps } from './UserRegistration/interface'
+import { BreadcrumbsProps } from '../../UserManagement/UserRegistration/interface'
 
 export interface rowTypes {
   name: string
@@ -177,11 +179,15 @@ const getSelectedString = (): string => {
 
 const breadcrumbs: BreadcrumbsProps[] = [
   {
-    label: 'User Management',
+    label: 'Transaction',
     to: '#',
   },
   {
-    label: 'Broker List',
+    label: 'Offer',
+    to: '#',
+  },
+  {
+    label: 'Create Offer',
     to: '#',
   },
 ]
@@ -189,8 +195,15 @@ const breadcrumbs: BreadcrumbsProps[] = [
 
 <template>
   <q-page padding>
-    <PageHeader title="Broker Lists" :breadcrumbs="breadcrumbs" />
-    <TableNavbar :search-button="() => {}" />
+    <PageHeader title="Offer List" :breadcrumbs="breadcrumbs" />
+    <TableNavbar
+      :create-button="
+        () => {
+          router.push('/transaction/create-offer')
+        }
+      "
+      create-button-title="Create Offer"
+    />
     <q-table
       v-model:selected="multipleSelected"
       flat
