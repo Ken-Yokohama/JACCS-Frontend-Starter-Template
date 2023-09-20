@@ -2,6 +2,8 @@
 import { ref } from 'vue'
 import PageHeader from '../../../../components/PageHeader/PageHeader.vue'
 import { BreadcrumbsProps } from '../UserRegistration/interface'
+import ConfirmDialog from '../../../../components/ConfirmDialog/ConfirmDialog.vue'
+import { Dialog, Notify } from 'quasar'
 
 const breadcrumbs: BreadcrumbsProps[] = [
   {
@@ -35,7 +37,36 @@ const street = ref<string>('')
 const address1 = ref<string>('')
 const address2 = ref<string>('')
 
-const handleSave = () => {}
+const handleSave = () => {
+  Dialog.create({
+    component: ConfirmDialog,
+    componentProps: {
+      title: 'Create New User',
+      message: 'Are you sure you want to save this record?',
+    },
+  })
+    .onOk(async () => {
+      const closeProgress = Notify.create({
+        type: 'ongoing',
+        message: 'Saving user, please wait...',
+        position: 'center',
+        color: 'white',
+        textColor: 'dark',
+      })
+
+      setTimeout(() => {
+        closeProgress()
+        Notify.create({
+          message: 'Saved Successfully',
+          position: 'center',
+          color: 'white',
+          textColor: 'dark',
+        })
+      }, 5000)
+    })
+    .onCancel(() => {})
+    .onDismiss(() => {})
+}
 </script>
 
 <template>

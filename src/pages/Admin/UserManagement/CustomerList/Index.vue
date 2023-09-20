@@ -8,13 +8,17 @@ import TableNavbar from '../../../../components/TableNavbar/TableNavbar.vue'
 
 export interface rowTypes {
   name: string
-  calories: number
-  fat: number
-  carbs: number
-  protein: number
-  sodium: number
-  calcium: string
-  iron: string
+  userId: number
+  userName: string
+  firstName: string
+  lastName: string
+  email: string
+  contactNumber: number
+}
+
+export interface Pagination {
+  page: number
+  rowsPerPage: number
 }
 
 export interface columnTypes {
@@ -22,7 +26,7 @@ export interface columnTypes {
   required?: boolean
   label: string
   align?: 'left' | 'center' | 'right'
-  field: string | ((row: { name: string }) => string)
+  field: string | ((row: rowTypes) => string)
   format?: (val: object) => string
   sortable?: boolean
   sort?: (a: string, b: string) => number
@@ -30,141 +34,166 @@ export interface columnTypes {
 
 const rows: rowTypes[] = [
   {
-    name: 'Frozen Yogurt',
-    calories: 159,
-    fat: 6.0,
-    carbs: 24,
-    protein: 4.0,
-    sodium: 87,
-    calcium: '14%',
-    iron: '1%',
+    name: 'test1',
+    userId: 1,
+    userName: 'john_doe',
+    firstName: 'John',
+    lastName: 'Doe',
+    email: 'john.doe@example.com',
+    contactNumber: 1234567890,
   },
   {
-    name: 'Ice cream sandwich',
-    calories: 237,
-    fat: 9.0,
-    carbs: 37,
-    protein: 4.3,
-    sodium: 129,
-    calcium: '8%',
-    iron: '1%',
+    name: 'test2',
+    userId: 2,
+    userName: 'jane_smith',
+    firstName: 'Jane',
+    lastName: 'Smith',
+    email: 'jane.smith@example.com',
+    contactNumber: 9876543210,
   },
   {
-    name: 'Eclair',
-    calories: 262,
-    fat: 16.0,
-    carbs: 23,
-    protein: 6.0,
-    sodium: 337,
-    calcium: '6%',
-    iron: '7%',
+    name: 'test3',
+    userId: 3,
+    userName: 'bob_jones',
+    firstName: 'Bob',
+    lastName: 'Jones',
+    email: 'bob.jones@example.com',
+    contactNumber: 5555555555,
   },
   {
-    name: 'Cupcake',
-    calories: 305,
-    fat: 3.7,
-    carbs: 67,
-    protein: 4.3,
-    sodium: 413,
-    calcium: '3%',
-    iron: '8%',
+    name: 'test4',
+    userId: 4,
+    userName: 'alice_wilson',
+    firstName: 'Alice',
+    lastName: 'Wilson',
+    email: 'alice.wilson@example.com',
+    contactNumber: 3333333333,
   },
   {
-    name: 'Gingerbread',
-    calories: 356,
-    fat: 16.0,
-    carbs: 49,
-    protein: 3.9,
-    sodium: 327,
-    calcium: '7%',
-    iron: '16%',
+    name: 'test5',
+    userId: 5,
+    userName: 'mark_johnson',
+    firstName: 'Mark',
+    lastName: 'Johnson',
+    email: 'mark.johnson@example.com',
+    contactNumber: 8888888888,
   },
   {
-    name: 'Jelly bean',
-    calories: 375,
-    fat: 0.0,
-    carbs: 94,
-    protein: 0.0,
-    sodium: 50,
-    calcium: '0%',
-    iron: '0%',
+    userId: 6,
+    name: 'test6',
+    userName: 'sarah_adams',
+    firstName: 'Sarah',
+    lastName: 'Adams',
+    email: 'sarah.adams@example.com',
+    contactNumber: 7777777777,
   },
   {
-    name: 'Lollipop',
-    calories: 392,
-    fat: 0.2,
-    carbs: 98,
-    protein: 0,
-    sodium: 38,
-    calcium: '0%',
-    iron: '2%',
+    name: 'test7',
+    userId: 7,
+    userName: 'michael_brown',
+    firstName: 'Michael',
+    lastName: 'Brown',
+    email: 'michael.brown@example.com',
+    contactNumber: 4444444444,
   },
   {
-    name: 'Honeycomb',
-    calories: 408,
-    fat: 3.2,
-    carbs: 87,
-    protein: 6.5,
-    sodium: 562,
-    calcium: '0%',
-    iron: '45%',
+    name: 'test8',
+    userId: 8,
+    userName: 'emily_wilson',
+    firstName: 'Emily',
+    lastName: 'Wilson',
+    email: 'emily.wilson@example.com',
+    contactNumber: 6666666666,
   },
   {
-    name: 'Donut',
-    calories: 452,
-    fat: 25.0,
-    carbs: 51,
-    protein: 4.9,
-    sodium: 326,
-    calcium: '2%',
-    iron: '22%',
+    name: 'test9',
+    userId: 9,
+    userName: 'david_smith',
+    firstName: 'David',
+    lastName: 'Smith',
+    email: 'david.smith@example.com',
+    contactNumber: 2222222222,
   },
   {
-    name: 'KitKat',
-    calories: 518,
-    fat: 26.0,
-    carbs: 65,
-    protein: 7,
-    sodium: 54,
-    calcium: '12%',
-    iron: '6%',
+    name: 'test10',
+    userId: 10,
+    userName: 'linda_jones',
+    firstName: 'Linda',
+    lastName: 'Jones',
+    email: 'linda.jones@example.com',
+    contactNumber: 9999999999,
+  },
+  {
+    name: 'test11',
+    userId: 11,
+    userName: 'peter_davis',
+    firstName: 'Peter',
+    lastName: 'Davis',
+    email: 'peter.davis@example.com',
+    contactNumber: 1111111111,
+  },
+  {
+    name: 'test12',
+    userId: 12,
+    userName: 'mary_miller',
+    firstName: 'Mary',
+    lastName: 'Miller',
+    email: 'mary.miller@example.com',
+    contactNumber: 5555555555,
   },
 ]
 
 const columns: columnTypes[] = [
   {
-    name: 'name',
+    name: 'userID',
     required: true,
-    label: 'Dessert (100g serving)',
+    label: 'User ID',
     align: 'left',
-    field: (row) => row.name,
+    field: (row) => String(row.userId),
     format: (val) => `${val}`,
     sortable: true,
-  },
-  {
-    name: 'calories',
-    align: 'center',
-    label: 'Calories',
-    field: 'calories',
-    sortable: true,
-  },
-  { name: 'fat', label: 'Fat (g)', field: 'fat', sortable: true },
-  { name: 'carbs', label: 'Carbs (g)', field: 'carbs' },
-  { name: 'protein', label: 'Protein (g)', field: 'protein' },
-  { name: 'sodium', label: 'Sodium (mg)', field: 'sodium' },
-  {
-    name: 'calcium',
-    label: 'Calcium (%)',
-    field: 'calcium',
-    sortable: true,
     sort: (a, b) => parseInt(a, 10) - parseInt(b, 10),
   },
+
   {
-    name: 'iron',
-    label: 'Iron (%)',
-    field: 'iron',
-    sortable: true,
-    sort: (a, b) => parseInt(a, 10) - parseInt(b, 10),
+    name: 'userName',
+    required: true,
+    label: 'User Name',
+    align: 'left',
+    field: (row) => row.userName,
+    format: (val) => `${val}`,
+  },
+  {
+    name: 'firstName',
+    required: true,
+    label: 'First Name',
+    align: 'left',
+    field: (row) => row.firstName,
+    format: (val) => `${val}`,
+  },
+  {
+    name: 'lastName',
+    required: true,
+    label: 'Last Name',
+    align: 'left',
+    field: (row) => row.lastName,
+    format: (val) => `${val}`,
+  },
+  {
+    name: 'email',
+    required: true,
+    label: 'Email Address',
+    align: 'left',
+    field: (row) => row.email,
+    format: (val) => `${val}`,
+  },
+  {
+    name: 'contactNumber',
+    required: true,
+    label: 'Contact Number',
+    align: 'left',
+    field: (row) => String(row.contactNumber),
+    format: (val) => `${val}`,
   },
 ]
 
@@ -187,6 +216,11 @@ const breadcrumbs: BreadcrumbsProps[] = [
     to: '#',
   },
 ]
+
+const pagination = ref<Pagination>({
+  page: 1,
+  rowsPerPage: 10,
+})
 </script>
 
 <template>
@@ -209,6 +243,7 @@ const breadcrumbs: BreadcrumbsProps[] = [
     />
     <q-table
       v-model:selected="multipleSelected"
+      v-model:pagination="pagination"
       flat
       bordered
       :rows="rows"
@@ -216,7 +251,80 @@ const breadcrumbs: BreadcrumbsProps[] = [
       row-key="name"
       :selected-rows-label="getSelectedString"
       selection="multiple"
-    ></q-table>
+      hide-bottom
+    >
+      <template #header-cell="props">
+        <q-th :props="props" style="font-weight: bold; font-size: 1rem">
+          {{ props.col.label }}
+        </q-th>
+      </template>
+      <template #body-cell-name="props">
+        <q-td :props="props">
+          <div class="flex items-center">
+            <p class="q-mb-none">{{ props.row.name }}</p>
+            <q-btn
+              flat
+              icon="edit_square"
+              size="sm"
+              color="secondary"
+              @click="() => {}"
+            >
+              <q-tooltip class="bg-info">View user details</q-tooltip>
+            </q-btn>
+          </div>
+        </q-td>
+      </template>
+    </q-table>
+
+    <div class="q-pt-sm">
+      <div class="flex flex-center">
+        <p>
+          Viewing
+          <span>{{ (pagination.page - 1) * pagination.rowsPerPage + 1 }}</span>
+          -
+          <span>
+            {{
+              pagination.page * pagination.rowsPerPage <= rows.length
+                ? pagination.page * pagination.rowsPerPage
+                : rows.length
+            }}
+          </span>
+          of
+          <span>{{ rows.length }}</span>
+        </p>
+        <q-space />
+        <q-pagination
+          v-model="pagination.page"
+          direction-links
+          outline
+          unelevated
+          color="black"
+          active-color="secondary"
+          class="q-mr-md"
+          :max="Math.ceil(rows.length / pagination.rowsPerPage)"
+          :max-pages="6"
+          boundary-numbers
+          @update:model-value="multipleSelected = []"
+        />
+        <div class="flex items-center">
+          <q-item-label class="q-mr-sm">View</q-item-label>
+          <q-select
+            v-model="pagination.rowsPerPage"
+            dense
+            outlined
+            :options="[10, 20, 30, 40, 50]"
+            @update:model-value="
+              () => {
+                // userStore.getUsers({
+                //   pagination: userStore.pagination,
+                //   filter: userStore.filter,
+                // })
+              }
+            "
+          />
+        </div>
+      </div>
+    </div>
 
     <div class="q-mt-md">Selected: {{ JSON.stringify(multipleSelected) }}</div>
   </q-page>
