@@ -5,6 +5,8 @@ import { ref } from 'vue'
 import { BreadcrumbsProps } from '../UserRegistration/interface'
 import PageHeader from '../../../../components/PageHeader/PageHeader.vue'
 import TableNavbar from '../../../../components/TableNavbar/TableNavbar.vue'
+import { Dialog, Notify } from 'quasar'
+import ConfirmDialog from '../../../../components/ConfirmDialog/ConfirmDialog.vue'
 
 export interface rowTypes {
   userId: number
@@ -208,18 +210,47 @@ const pagination = ref<Pagination>({
   page: 1,
   rowsPerPage: 10,
 })
+
+const handleDelete = async () => {
+  Dialog.create({
+    component: ConfirmDialog,
+    componentProps: {
+      title: 'Delete Customer',
+      message: 'Are you sure you want to delete this record?',
+    },
+  }).onOk(async () => {
+    const closeProgress = Notify.create({
+      type: 'ongoing',
+      message: 'Deleting customer, please wait...',
+      position: 'center',
+      color: 'white',
+      textColor: 'dark',
+    })
+
+    setTimeout(() => {
+      closeProgress()
+      Notify.create({
+        message: 'Deleted Successfully',
+        position: 'center',
+        color: 'white',
+        textColor: 'dark',
+      })
+    }, 5000)
+  })
+}
 </script>
 
 <template>
   <q-page padding>
     <PageHeader title="Customer Lists" :breadcrumbs="breadcrumbs" />
     <TableNavbar
-      :delete-button="() => {}"
+      :delete-button="handleDelete"
       :edit-button="
         () => {
           router.push('/customer-list/customer-detail')
         }
       "
+      :disable-edit-button="multipleSelected.length > 1"
       :search-button="() => {}"
       :create-button="
         () => {
