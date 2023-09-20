@@ -1,9 +1,9 @@
-import axios from 'axios'
 import { defineStore } from 'pinia'
 import { Notify, Dialog, QTableColumn } from 'quasar'
 import { User, Pagination, UserData } from './interface'
 import router from '../../router'
 import ConfirmDialog from '../../components/ConfirmDialog/ConfirmDialog.vue'
+import { getUsersService } from './services'
 
 export const useUserStore = defineStore('userStore', {
   state: () => ({
@@ -85,21 +85,21 @@ export const useUserStore = defineStore('userStore', {
       const filter = props.filter
 
       this.loading = true
-      const response = await axios.get(
-        'https://table.quasarcomponents.com/dogs',
-        {
-          params: {
-            page: page,
-            limit: rowsPerPage,
-            order_column: sortBy,
-            order_type: descending ? 'desc' : 'asc',
-            term: filter,
-          },
-        }
-      )
+
+      const params = {
+        params: {
+          page: page,
+          limit: rowsPerPage,
+          order_column: sortBy,
+          order_type: descending ? 'desc' : 'asc',
+          term: filter,
+        },
+      }
+
+      const response = await getUsersService(params)
 
       if (response) {
-        const formatted = response.data.data.map((row: UserData) => {
+        const formatted = response.data.map((row: UserData) => {
           return {
             id: row.id,
             created_at: row.created_at,
@@ -113,9 +113,9 @@ export const useUserStore = defineStore('userStore', {
         this.userRows = formatted
 
         this.pagination = {
-          page: response.data.meta.current_page,
-          rowsPerPage: response.data.meta.per_page,
-          rowsNumber: response.data.meta.total,
+          page: response.meta.current_page,
+          rowsPerPage: response.meta.per_page,
+          rowsNumber: response.meta.total,
           sortBy: sortBy,
           descending: descending,
         }

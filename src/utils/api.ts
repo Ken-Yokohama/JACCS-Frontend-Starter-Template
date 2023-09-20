@@ -1,8 +1,11 @@
 import axios from 'axios'
 
 interface RequestFunction {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  (url: string, options?: { method?: string; body?: object }): Promise<any>
+  (
+    url: string,
+    options?: { method?: string; body?: object; params?: object }
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  ): Promise<any>
 }
 
 export const request: RequestFunction = async (url: string, options = {}) => {
@@ -16,11 +19,17 @@ export const request: RequestFunction = async (url: string, options = {}) => {
     body = options.body
   }
 
+  let params = null
+  if (options.params) {
+    params = options.params
+  }
+
   try {
     // Do Request
 
     if (method === 'get') {
       const response = await axios.get(import.meta.env.VITE_API_URL + url, {
+        ...params,
         // headers: {
         //   'x-access-token': getToken('jaccsTKN')!,
         //   email: getToken('Email')!

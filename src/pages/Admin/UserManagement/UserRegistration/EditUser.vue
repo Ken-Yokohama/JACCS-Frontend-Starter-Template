@@ -26,7 +26,7 @@ const breadcrumbs: BreadcrumbsProps[] = [
   <q-page padding>
     <PageHeader title="Edit" :back="true" :breadcrumbs="breadcrumbs" />
     <UserForm
-      formTitle="Personal information"
+      form-title="Personal information"
       :edit-button="userStore.editUser"
     />
   </q-page>

@@ -42,12 +42,12 @@ const { title, message } = defineProps<ConfirmDialogProps>()
 const { dialogRef, onDialogOK, onDialogCancel } = useDialogPluginComponent()
 
 const handleConfirmClick = () => {
-  console.log('Confirm Button Clicked')
+  alert('Confirm Button Clicked')
   onDialogOK()
 }
 
 const handleCancelClick = () => {
-  console.log('Cancel Button Clicked')
+  alert('Cancel Button Clicked')
   onDialogCancel()
 }
 </script>
