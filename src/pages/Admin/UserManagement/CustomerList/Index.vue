@@ -7,7 +7,6 @@ import PageHeader from '../../../../components/PageHeader/PageHeader.vue'
 import TableNavbar from '../../../../components/TableNavbar/TableNavbar.vue'
 
 export interface rowTypes {
-  name: string
   userId: number
   userName: string
   firstName: string
@@ -34,7 +33,6 @@ export interface columnTypes {
 
 const rows: rowTypes[] = [
   {
-    name: 'test1',
     userId: 1,
     userName: 'john_doe',
     firstName: 'John',
@@ -43,7 +41,6 @@ const rows: rowTypes[] = [
     contactNumber: 1234567890,
   },
   {
-    name: 'test2',
     userId: 2,
     userName: 'jane_smith',
     firstName: 'Jane',
@@ -52,7 +49,6 @@ const rows: rowTypes[] = [
     contactNumber: 9876543210,
   },
   {
-    name: 'test3',
     userId: 3,
     userName: 'bob_jones',
     firstName: 'Bob',
@@ -61,7 +57,6 @@ const rows: rowTypes[] = [
     contactNumber: 5555555555,
   },
   {
-    name: 'test4',
     userId: 4,
     userName: 'alice_wilson',
     firstName: 'Alice',
@@ -70,7 +65,6 @@ const rows: rowTypes[] = [
     contactNumber: 3333333333,
   },
   {
-    name: 'test5',
     userId: 5,
     userName: 'mark_johnson',
     firstName: 'Mark',
@@ -80,7 +74,6 @@ const rows: rowTypes[] = [
   },
   {
     userId: 6,
-    name: 'test6',
     userName: 'sarah_adams',
     firstName: 'Sarah',
     lastName: 'Adams',
@@ -88,7 +81,6 @@ const rows: rowTypes[] = [
     contactNumber: 7777777777,
   },
   {
-    name: 'test7',
     userId: 7,
     userName: 'michael_brown',
     firstName: 'Michael',
@@ -97,7 +89,6 @@ const rows: rowTypes[] = [
     contactNumber: 4444444444,
   },
   {
-    name: 'test8',
     userId: 8,
     userName: 'emily_wilson',
     firstName: 'Emily',
@@ -106,7 +97,6 @@ const rows: rowTypes[] = [
     contactNumber: 6666666666,
   },
   {
-    name: 'test9',
     userId: 9,
     userName: 'david_smith',
     firstName: 'David',
@@ -115,7 +105,6 @@ const rows: rowTypes[] = [
     contactNumber: 2222222222,
   },
   {
-    name: 'test10',
     userId: 10,
     userName: 'linda_jones',
     firstName: 'Linda',
@@ -124,7 +113,6 @@ const rows: rowTypes[] = [
     contactNumber: 9999999999,
   },
   {
-    name: 'test11',
     userId: 11,
     userName: 'peter_davis',
     firstName: 'Peter',
@@ -133,7 +121,6 @@ const rows: rowTypes[] = [
     contactNumber: 1111111111,
   },
   {
-    name: 'test12',
     userId: 12,
     userName: 'mary_miller',
     firstName: 'Mary',
@@ -145,7 +132,7 @@ const rows: rowTypes[] = [
 
 const columns: columnTypes[] = [
   {
-    name: 'userID',
+    name: 'userId',
     required: true,
     label: 'User ID',
     align: 'left',
@@ -248,7 +235,7 @@ const pagination = ref<Pagination>({
       bordered
       :rows="rows"
       :columns="columns"
-      row-key="name"
+      row-key="userId"
       :selected-rows-label="getSelectedString"
       selection="multiple"
       hide-bottom
@@ -258,10 +245,10 @@ const pagination = ref<Pagination>({
           {{ props.col.label }}
         </q-th>
       </template>
-      <template #body-cell-name="props">
+      <template #body-cell-userId="props">
         <q-td :props="props">
           <div class="flex items-center">
-            <p class="q-mb-none">{{ props.row.name }}</p>
+            <p class="q-mb-none">{{ props.row.userId }}</p>
             <q-btn
               flat
               icon="edit_square"
