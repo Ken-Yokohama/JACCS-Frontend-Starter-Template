@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import { useAuthStore } from '../../stores/AuthStore/AuthStore'
+import { useAuthStore } from './store'
 const authStore = useAuthStore()
 const newPassword = ref<string>('')
 const confirmPassword = ref<string>('')

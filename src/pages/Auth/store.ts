@@ -78,8 +78,8 @@ export const useAuthStore = defineStore('authStore', {
         }
       }, 2000)
     },
-    otpCode(data: number) {
-      console.log('Code', data)
+    otpCode() {
+      // console.log('Code', data)
     },
   },
   persist: true,

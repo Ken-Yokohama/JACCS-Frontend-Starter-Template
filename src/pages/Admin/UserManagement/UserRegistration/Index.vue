@@ -6,8 +6,8 @@ import router from '../../../../router'
 import { BreadcrumbsProps } from './interface'
 
 import { ref } from 'vue'
+import { useUserStore } from './store'
 
-import { useUserStore } from '../../../../stores/UserStore/UserStore'
 const userStore = useUserStore()
 
 let multipleSelected = ref([])
@@ -149,3 +149,4 @@ onMounted(() => {
   </q-page>
 </template>
 <style></style>
+./UserStore

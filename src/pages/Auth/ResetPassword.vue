@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import { useAuthStore } from '../../stores/AuthStore/AuthStore'
+import { useAuthStore } from './store'
 const authStore = useAuthStore()
 const email = ref<string>('')
 const handleSubmit = () => {
@@ -55,6 +55,7 @@ const handleSubmit = () => {
                     dense
                     outlined
                     class="q-mb-md"
+                    type="email"
                     name="email"
                     autocomplete="email"
                     :rules="[
