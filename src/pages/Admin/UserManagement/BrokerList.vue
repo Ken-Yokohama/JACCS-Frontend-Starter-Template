@@ -393,7 +393,6 @@ const handleApprove = async () => {
       :approve-button="handleApprove"
       :disable-approve-button="!(multipleSelected.length > 0)"
       :reject-button="() => {}"
-      :reconsider-button="() => {}"
     />
     <q-table
       v-model:selected="multipleSelected"

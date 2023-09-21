@@ -12,7 +12,6 @@ const {
   approveButton,
   disableApproveButton,
   rejectButton,
-  reconsiderButton,
 } = defineProps<TableNavbarProps>()
 
 const searchInput = ref<string>('')
@@ -58,15 +57,6 @@ const searchInput = ref<string>('')
           dense
           no-caps
           @click="rejectButton"
-        />
-        <q-btn
-          v-if="reconsiderButton"
-          :disabled="true"
-          label="Reconsider"
-          icon="done"
-          dense
-          no-caps
-          @click="reconsiderButton"
         />
       </q-btn-group>
     </div>

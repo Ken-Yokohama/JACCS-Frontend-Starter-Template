@@ -1,11 +1,12 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import { useAuthStore } from '../stores/AuthStore/AuthStore'
-import { UserRegistrationChildren } from './user-registration'
-import { CustomerListChildren } from './customer-list'
-import { TransactionChildren } from './transaction'
-import { RoleListChildren } from './role-list'
-import { HolidayChildren } from './holiday'
-import { UnitAutoManagementChildren } from './unit-auto-management'
+import { OfferChildren } from '../pages/Admin/Transaction/Offer/routes'
+import { CustomerListChildren } from '../pages/Admin/UserManagement/CustomerList/routes'
+import { HolidayChildren } from '../pages/Admin/SettingsAndConfiguration/Holiday/routes'
+import { RoleListChildren } from '../pages/Admin/RoleManagement/RoleList/routes'
+import { AppManagementChildren } from '../pages/Admin/Transaction/AppManagement/routes'
+import { UnitAutoManagementChildren } from '../pages/Admin/SettingsAndConfiguration/UnitAutoManagement/routes'
+import { UserRegistrationChildren } from '../pages/Admin/UserManagement/UserRegistration/routes'
 
 const router = createRouter({
   history: createWebHistory(),
@@ -77,8 +78,12 @@ const router = createRouter({
           children: UnitAutoManagementChildren,
         },
         {
-          path: '/transaction',
-          children: TransactionChildren,
+          path: '/offer',
+          children: OfferChildren,
+        },
+        {
+          path: '/app-management',
+          children: AppManagementChildren,
         },
         {
           path: '/admin-logs',

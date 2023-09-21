@@ -84,20 +84,21 @@ const mockModuleCollection: ModuleItem[] = [
 
   .card-container {
     padding: 0 2rem;
-    display: flex;
-    justify-content: space-evenly;
     gap: 2rem;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   }
 
   .card {
     display: flex;
     flex-direction: column;
     align-items: center;
-    max-width: 300px;
     img {
       max-width: min(300px, 100%);
       aspect-ratio: 2.3/1;
+    }
+    p {
+      max-width: 300px;
     }
   }
 }

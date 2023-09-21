@@ -10,7 +10,7 @@
     "coverage": "vitest run --coverage",
     "preview": "vite preview",
     "prelint": "vue-tsc --noEmit",
-    "lint": "eslint --ext .js,.vue src"
+    "lint": "eslint --ext .js,.vue,.ts src"
   },
   "dependencies": {
     "@quasar/extras": "^1.16.6",

@@ -107,7 +107,7 @@ const downloadPdf = async () => {
         <PDFIcon />
         PDF
       </q-btn>
-      <q-btn color="warning" @click="router.push('/transaction/edit-offer')">
+      <q-btn color="warning" @click="router.push('/offer/edit-offer')">
         Edit
       </q-btn>
     </div>

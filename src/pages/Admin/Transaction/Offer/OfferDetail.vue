@@ -21,7 +21,7 @@ const breadcrumbs: BreadcrumbsProps[] = [
 <template>
   <q-page padding>
     <PageHeader title="Details" :back="true" :breadcrumbs="breadcrumbs" />
-    <q-btn color="primary" @click="router.push('/transaction/edit-offer')">
+    <q-btn color="primary" @click="router.push('/offer/edit-offer')">
       Edit
     </q-btn>
   </q-page>
