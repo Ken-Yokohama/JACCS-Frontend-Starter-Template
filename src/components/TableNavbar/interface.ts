@@ -7,6 +7,5 @@ export interface TableNavbarProps {
   approveButton?: () => void
   disableApproveButton?: boolean
   rejectButton?: () => void
-  reconsiderButton?: () => void
   createButtonTitle?: string
 }

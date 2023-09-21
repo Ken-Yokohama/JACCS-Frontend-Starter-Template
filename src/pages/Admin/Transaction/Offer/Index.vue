@@ -199,7 +199,7 @@ const breadcrumbs: BreadcrumbsProps[] = [
     <TableNavbar
       :create-button="
         () => {
-          router.push('/transaction/create-offer')
+          router.push('/offer/create-offer')
         }
       "
       create-button-title="Create Offer"

@@ -154,10 +154,10 @@ export const useUserStore = defineStore('userStore', {
           }
         })
         .onCancel(() => {
-          console.log('Cancel')
+          // console.log('Cancel')
         })
         .onDismiss(() => {
-          console.log('I am triggered on both OK and Cancel')
+          // console.log('I am triggered on both OK and Cancel')
         })
     },
     editUser() {
@@ -191,10 +191,10 @@ export const useUserStore = defineStore('userStore', {
           }
         })
         .onCancel(() => {
-          console.log('Cancel')
+          // console.log('Cancel')
         })
         .onDismiss(() => {
-          console.log('I am triggered on both OK and Cancel')
+          // console.log('I am triggered on both OK and Cancel')
         })
     },
     deleteUser() {
@@ -225,11 +225,12 @@ export const useUserStore = defineStore('userStore', {
       })
     },
     viewUser(item: Object) {
-      console.log('Item', item)
+      alert(item)
+      // console.log('Item', item)
       router.push('/user-registration/user-detail')
     },
     handleUserFormSubmit() {
-      console.log('Data to save', this.userData)
+      // console.log('Data to save', this.userData)
       this.resetUserForm()
       router.push('/user-registration')
     },
