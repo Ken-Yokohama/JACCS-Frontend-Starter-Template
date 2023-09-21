@@ -1,5 +1,4 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import { useAuthStore } from '../stores/AuthStore/AuthStore'
 import { OfferChildren } from '../pages/Admin/Transaction/Offer/routes'
 import { CustomerListChildren } from '../pages/Admin/UserManagement/CustomerList/routes'
 import { HolidayChildren } from '../pages/Admin/SettingsAndConfiguration/Holiday/routes'
@@ -7,13 +6,14 @@ import { RoleListChildren } from '../pages/Admin/RoleManagement/RoleList/routes'
 import { AppManagementChildren } from '../pages/Admin/Transaction/AppManagement/routes'
 import { UnitAutoManagementChildren } from '../pages/Admin/SettingsAndConfiguration/UnitAutoManagement/routes'
 import { UserRegistrationChildren } from '../pages/Admin/UserManagement/UserRegistration/routes'
+import { useAuthStore } from '../pages/Auth/store'
 
 const router = createRouter({
   history: createWebHistory(),
   routes: [
     {
       path: '/login',
-      component: () => import('../pages/Login/Login.vue'),
+      component: () => import('../pages/Auth/Login.vue'),
       meta: { requiresNotAuth: true },
     },
     {

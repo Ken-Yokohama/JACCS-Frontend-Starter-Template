@@ -4,8 +4,8 @@ const isPwd = ref<boolean>(true)
 const email = ref<string>('')
 const password = ref<string>('')
 
-import { useAuthStore } from '../../stores/AuthStore/AuthStore'
 import router from '../../router'
+import { useAuthStore } from './store'
 const authStore = useAuthStore()
 
 const handleLogin = () => {
@@ -37,6 +37,7 @@ const handleLogin = () => {
                     v-model="email"
                     outlined
                     class="q-mb-md"
+                    type="email"
                     name="email"
                     autocomplete="email"
                     :rules="[

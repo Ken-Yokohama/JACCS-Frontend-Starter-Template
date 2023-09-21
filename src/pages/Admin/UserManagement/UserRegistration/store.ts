@@ -1,9 +1,9 @@
 import { defineStore } from 'pinia'
 import { Notify, Dialog, QTableColumn } from 'quasar'
 import { User, Pagination, UserData } from './interface'
-import router from '../../router'
-import ConfirmDialog from '../../components/ConfirmDialog/ConfirmDialog.vue'
+import router from '../../../../router'
 import { getUsersService } from './services'
+import ConfirmDialog from '../../../../components/ConfirmDialog/ConfirmDialog.vue'
 
 export const useUserStore = defineStore('userStore', {
   state: () => ({
