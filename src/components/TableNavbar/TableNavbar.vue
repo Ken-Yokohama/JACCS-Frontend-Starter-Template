@@ -5,9 +5,14 @@ import { ref } from 'vue'
 const {
   deleteButton,
   editButton,
+  disableEditButton,
   searchButton,
   createButton,
   createButtonTitle,
+  approveButton,
+  disableApproveButton,
+  rejectButton,
+  reconsiderButton,
 } = defineProps<TableNavbarProps>()
 
 const searchInput = ref<string>('')
@@ -20,6 +25,7 @@ const searchInput = ref<string>('')
       <q-btn-group flat>
         <q-btn
           v-if="deleteButton"
+          :disabled="false"
           label="Delete"
           icon="delete_outline"
           dense
@@ -28,11 +34,39 @@ const searchInput = ref<string>('')
         />
         <q-btn
           v-if="editButton"
+          :disabled="disableEditButton"
           label="Edit"
           icon="edit"
           dense
           no-caps
           @click="editButton"
+        />
+        <q-btn
+          v-if="approveButton"
+          :disabled="disableApproveButton"
+          label="Approve"
+          icon="done"
+          dense
+          no-caps
+          @click="approveButton"
+        />
+        <q-btn
+          v-if="rejectButton"
+          :disabled="true"
+          label="Reject"
+          icon="cancel"
+          dense
+          no-caps
+          @click="rejectButton"
+        />
+        <q-btn
+          v-if="reconsiderButton"
+          :disabled="true"
+          label="Reconsider"
+          icon="done"
+          dense
+          no-caps
+          @click="reconsiderButton"
         />
       </q-btn-group>
     </div>
