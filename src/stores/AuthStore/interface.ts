@@ -3,3 +3,10 @@ export interface Auth {
   password: string
   role: string
 }
+export interface ResetPassword {
+  email: string
+}
+export interface NewPassword {
+  newPassword: string
+  confirmPassword: string
+}

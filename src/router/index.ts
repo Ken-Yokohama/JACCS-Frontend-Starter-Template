@@ -16,6 +16,16 @@ const router = createRouter({
       meta: { requiresNotAuth: true },
     },
     {
+      path: '/reset-password',
+      component: () => import('../pages/Auth/ResetPassword.vue'),
+      meta: { requiresNotAuth: true },
+    },
+    {
+      path: '/change-default-password',
+      component: () => import('../pages/Auth/ChangeDefaultPassword.vue'),
+      meta: { requiresNotAuth: true },
+    },
+    {
       path: '/',
       component: () => import('../layouts/DashboardLayout/DashboardLayout.vue'),
       children: [
