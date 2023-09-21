@@ -26,6 +26,11 @@ const router = createRouter({
       meta: { requiresNotAuth: true },
     },
     {
+      path: '/otp-verification',
+      component: () => import('../pages/Auth/OTPVerfication.vue'),
+      meta: { requiresNotAuth: true },
+    },
+    {
       path: '/',
       component: () => import('../layouts/DashboardLayout/DashboardLayout.vue'),
       children: [
@@ -80,14 +85,14 @@ const router = createRouter({
           path: '/transaction',
           children: TransactionChildren,
         },
-        {
-          path: '/admin-logs',
-          component: () => import('../pages/Admin/Logs/AdminLogs.vue'),
-        },
-        {
-          path: '/user-logs',
-          component: () => import('../pages/Admin/Logs/UserLogs.vue'),
-        },
+        // {
+        //   path: '/admin-logs',
+        //   component: () => import('../pages/Admin/Logs/AdminLogs.vue'),
+        // },
+        // {
+        //   path: '/user-logs',
+        //   component: () => import('../pages/Admin/Logs/UserLogs.vue'),
+        // },
       ],
       meta: { requiresAuth: true },
     },
