@@ -87,7 +87,7 @@ const router = createRouter({
         },
         {
           path: '/admin-logs',
-          component: () => import('../pages/Admin/Logs/AdminLogs.vue'),
+          component: () => import('../pages/Admin/DataLogs/AdminLogs.vue'),
         },
         {
           path: '/user-logs',
