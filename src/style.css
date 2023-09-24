@@ -38,3 +38,8 @@ h6 {
   border-bottom: 2px solid red;
   border-right: 2px solid red;
 }
+
+/* Container class */
+.page-wrapper {
+  max-width: 1000px;
+}
