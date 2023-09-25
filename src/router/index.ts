@@ -85,13 +85,13 @@ const router = createRouter({
           path: '/app-management',
           children: AppManagementChildren,
         },
-        {
-          path: '/admin-logs',
-          component: () => import('../pages/Admin/Logs/AdminLogs.vue'),
-        },
+        // {
+        //   path: '/admin-logs',
+        //   component: () => import('../pages/Admin/DataLogs/AdminLogs.vue'),
+        // },
         {
           path: '/user-logs',
-          component: () => import('../pages/Admin/Logs/UserLogs.vue'),
+          component: () => import('../pages/Admin/DataLogs/UserLogs.vue'),
         },
       ],
       meta: { requiresAuth: true },
